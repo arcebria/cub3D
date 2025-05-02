@@ -1,0 +1,89 @@
+- parametros de color repetidos (dos C o F)
+- parametros de color invalidos (F 20, 20, -20)
+- falta uno de los parametros (solo C o F)
+- faltan los dos parametros de color
+- falta uno de los valores (F 20, 20/ C 20, 20)
+- archivo de mapa completamente vacio
+- carcater/es al final del archivo
+
+11111
+10001
+11111
+
+
+1
+
+- tipo de archivo incorrecto (.cubhgfds)
+- archivo sin permisos (chmod 000)
+- caracteres no autorizados (solo 1,0, [N,S,E o W])
+- texturas o colores debajo del mapa
+- solo texturas o colores pero no mapa
+- solo mapa pero no texturas ni colores
+- mapa muy pequenyo
+
+111
+111
+
+- mapa con un espacio vacio (los espacios de aceptan si estan entre muros) ----> se puede hacer un floodfill y si el jugador llega a un espacio devuelve un error
+
+1111111
+1S00001
+100 001
+1000001
+1111111
+
+- caracter de jugador duplicado
+- caracter de jugador inexistente
+- caracter de jugador en una un limite
+
+11S1
+1001
+1111
+
+- texturas sin direccion
+
+NO textures/test/north.png
+SO textures/test/south.png
+WE textures/test/west.png
+EA textures/test/
+
+- texturas duplicadas
+
+NO textures/test/north.png
+SO textures/test/south.png
+WE textures/test/west.png
+EA textures/test/east.png
+EA textures/test/east.png
+
+- falta una textura
+
+SO textures/test/south.png
+WE textures/test/west.png
+EA textures/test/east.png
+
+- texturas duplicadas y una de ellas falta
+
+NO textures/test/north.png
+WE textures/test/west.png
+EA textures/test/east.png
+EA textures/test/east.png
+
+- direccion de las texturas invalidas
+
+NO textures/test/north.png
+SO textures/test/south.png
+WE textures/test/x
+EA textures/test/east.png
+
+- mapa no cerrado por 1
+
+1111
+1000
+1W01
+1111
+
+
+bonus
+- ubicacion de la puerta erronea (10201 -- 11211) El caracter 2 es la puerta
+
+

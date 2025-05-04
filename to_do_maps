@@ -1,9 +1,9 @@
-- parametros de color repetidos (dos C o F)
+- parametros de color repetidos (dos C o F) +
 - parametros de color invalidos (F 20, 20, -20)
-- falta uno de los parametros (solo C o F)
-- faltan los dos parametros de color
+- falta uno de los parametros (solo C o F) +
+- faltan los dos parametros de color +
 - falta uno de los valores (F 20, 20/ C 20, 20)
-- archivo de mapa completamente vacio
+- archivo de mapa completamente vacio +
 - carcater/es al final del archivo
 
 11111
@@ -13,12 +13,12 @@
 
 1
 
-- tipo de archivo incorrecto (.cubhgfds)
-- archivo sin permisos (chmod 000)
+- tipo de archivo incorrecto (.cubhgfds) +
+- archivo sin permisos (chmod 000) +
 - caracteres no autorizados (solo 1,0, [N,S,E o W])
-- texturas o colores debajo del mapa
+- texturas o colores debajo del mapa +
 - solo texturas o colores pero no mapa
-- solo mapa pero no texturas ni colores
+- solo mapa pero no texturas ni colores +
 - mapa muy pequenyo
 
 111

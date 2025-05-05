@@ -1,4 +1,4 @@
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 void	count_texture(char *str, t_checker *checker)
 {
@@ -78,8 +78,8 @@ void	check_params_number(char **map_array, t_checker *checker)
 			count_color(map_array[i] + j, checker);
 		i++;
 	}
-	if (checker->count_texture != 4 || checker->count_color != 2 || checker->count_NO != 1 || 
-			checker->count_SO != 1 || checker->count_EA != 1 || checker->count_WE != 1 || 
+	if (checker->count_texture != 4 || checker->count_color != 2 || checker->count_NO != 1 ||
+			checker->count_SO != 1 || checker->count_EA != 1 || checker->count_WE != 1 ||
 			checker->count_F != 1 || checker->count_C != 1)
 		handle_error(ERR_TEXT_COLOR_NUMBER_CODE);
 }

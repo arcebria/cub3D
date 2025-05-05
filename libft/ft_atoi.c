@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcebria <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 13:11:12 by arcebria          #+#    #+#             */
-/*   Updated: 2024/09/30 13:13:25 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/05 17:19:28 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_atoi(const char *nptr)
 		nptr++;
 	}
 	result = 0;
-	while (ft_isdigit(*nptr) == 1)
+	while (ft_isdigit(*nptr))
 	{
 		result = (result * 10) + (*nptr - '0');
 		nptr++;

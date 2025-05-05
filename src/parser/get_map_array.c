@@ -1,4 +1,4 @@
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 char	*join_lines(char *joined_line, char *current_line)
 {

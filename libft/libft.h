@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:39:44 by arcebria          #+#    #+#             */
-/*   Updated: 2025/04/14 23:30:39 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/05 20:47:04 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ int		ft_isspace(int c);
 char	*ft_strcpy(char *dest, char *src);
 char	*ft_strcat(char *dest, char *src);
 int		ft_issigneddigit(char *str);
+int		ft_arraylen(char **array);
 
 #endif

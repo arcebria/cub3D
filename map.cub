@@ -1,9 +1,11 @@
-NO 546
-SO r53467
-WE ghjk
-EA yuedsj
-F fwevdsj
+F 2, 2, 3
+C 3, 2, 2
 
+NO nort_path
+SO south_path
+EA east_path
+WE west_path
 
-11111
-11111
+     1111111111
+1111111111
+1111111111

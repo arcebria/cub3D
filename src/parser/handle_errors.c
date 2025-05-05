@@ -1,4 +1,4 @@
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 void    handle_error(int error_code)
 {
@@ -12,7 +12,7 @@ void    handle_error(int error_code)
         ft_putstr_fd(ERR_TEXT_COLOR_PLACE, 2);
     else if (error_code == ERR_TEXT_COLOR_NUMBER_CODE)
         ft_putstr_fd(ERR_TEXT_COLOR_NUMBER, 2);
-    else
-        ft_putstr_fd("Error\nUnknown error code\n", 2);
+    else if (error_code == ERR_COLOR_CODE)
+        ft_putstr_fd(ERR_COLOR, 2);
     exit(error_code);
 }

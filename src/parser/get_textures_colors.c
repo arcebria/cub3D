@@ -47,11 +47,15 @@ para cuando faltan valores de color o hay de mas
 void	add_f(char **map_array, int i, int j, t_color *color)
 {
 	int	z;
+	char	*str1;
+	char	*str2;
+	char	*str3;
 
 	z = j;
 	while (ft_isdigit(map_array[i][j]))
 				j++;
-	color->F_R = ft_atoi(ft_substr(map_array[i], z, j - z));
+	str1 = ft_substr(map_array[i], z, j - z);
+	color->F_R = ft_atoi(str1);
 	while (ft_isspace(map_array[i][j]) || map_array[i][j] == ',')
 		j++;
 	if (!map_array[i][j])
@@ -59,7 +63,8 @@ void	add_f(char **map_array, int i, int j, t_color *color)
 	z = j;
 	while (ft_isdigit(map_array[i][j]))
 		j++;
-	color->F_G = ft_atoi(ft_substr(map_array[i], z, j - z));
+	str2 = ft_substr(map_array[i], z, j - z);
+	color->F_G = ft_atoi(str2);
 	while (ft_isspace(map_array[i][j]) || map_array[i][j] == ',')
 		j++;
 	if (!map_array[i][j])
@@ -67,21 +72,29 @@ void	add_f(char **map_array, int i, int j, t_color *color)
 	z = j;
 	while (ft_isdigit(map_array[i][j]))
 		j++;
-	color->F_B = ft_atoi(ft_substr(map_array[i], z, j - z));
+	str3 = ft_substr(map_array[i], z, j - z);
+	color->F_B = ft_atoi(str3);
 	while (ft_isspace(map_array[i][j]))
 		j++;
 	if (map_array[i][j])
 		handle_error(ERR_COLOR_CODE);
+	free(str1);
+	free(str2);
+	free(str3);
 }
 
 void	add_c(char **map_array, int i, int j, t_color *color)
 {
 	int	z;
+	char	*str1;
+	char	*str2;
+	char	*str3;
 
 	z = j;
 	while (ft_isdigit(map_array[i][j]))
 				j++;
-	color->C_R = ft_atoi(ft_substr(map_array[i], z, j - z));
+	str1 = ft_substr(map_array[i], z, j - z);
+	color->C_R = ft_atoi(str1);
 	while (ft_isspace(map_array[i][j]) || map_array[i][j] == ',')
 		j++;
 	if (!map_array[i][j])
@@ -89,7 +102,8 @@ void	add_c(char **map_array, int i, int j, t_color *color)
 	z = j;
 	while (ft_isdigit(map_array[i][j]))
 		j++;
-	color->C_G = ft_atoi(ft_substr(map_array[i], z, j - z));
+	str2 = ft_substr(map_array[i], z, j - z);
+	color->C_G = ft_atoi(str2);
 	while (ft_isspace(map_array[i][j]) || map_array[i][j] == ',')
 		j++;
 	if (!map_array[i][j])
@@ -97,11 +111,15 @@ void	add_c(char **map_array, int i, int j, t_color *color)
 	z = j;
 	while (ft_isdigit(map_array[i][j]))
 		j++;
-	color->C_B = ft_atoi(ft_substr(map_array[i], z, j - z));
+	str3 = ft_substr(map_array[i], z, j - z);
+	color->C_B = ft_atoi(str3);
 	while (ft_isspace(map_array[i][j]))
 		j++;
 	if (map_array[i][j])
 		handle_error(ERR_COLOR_CODE);
+	free(str1);
+	free(str2);
+	free(str3);
 }
 
 t_color	*get_colors(char **map_array, t_color *color)

@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:01:32 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/05 19:47:16 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:34:53 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 #include "../libft/ft_printf.h"
 #include "errors.h"
 #include "fcntl.h"
+
+# define WEST 0
+# define EAST 1
+# define NORTH 2
+# define SOUTH 3
 
 typedef struct s_checker
 {
@@ -55,6 +60,9 @@ typedef struct s_map
 	char	**map;
 	int		player_x;
 	int		player_y;
+	int		player_dir;
+	int		map_flag;
+	int		player_count;
 }	t_map;
 
 void		parsing(int map_fd);

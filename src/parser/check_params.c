@@ -48,10 +48,10 @@ void check_param_place(char **map_array, t_checker *checker)
 	i = 0;
 	while (map_array[i])
 	{
-		if (map_array[i][0] == '_')
+		if (map_array[i + 1] && map_array[i][0] == '_')
 			i++;
 		j = 0;
-		while (ft_isspace(map_array[i][j]))
+		while (ft_isspace(map_array[i][j])) // aqui hay un error si la siguiente linea esta vacia
 			j++;
 		if (!is_texture_color(map_array[i] + j))
 			checker->map_flag = 1;

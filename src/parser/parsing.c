@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/06 15:22:54 by arcebria          #+#    #+#             */
+/*   Updated: 2025/05/06 20:51:16 by arcebria         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3D.h"
 
 void	check_extension(char *str)
@@ -60,10 +72,13 @@ t_map	*copy_map(char **map_array, t_map *map)
 	while (map_array[i])
 	{
 		map->map[j] = ft_strdup(map_array[i]);
-		ft_printf("%s\n", map->map[j]);
 		i++;
 		j++;
 	}
+	map->map[j] = NULL;
+	if (!map->map[0])
+		handle_error(ERR_EMPTY_MAP_CODE);
+	ft_free_array(map_array);
 	return (map);
 }
 
@@ -86,8 +101,14 @@ void	parsing(int map_fd)
 	color = get_colors(map_array, color);
 	map = NULL;
 	map = copy_map(map_array, map);
-	ft_printf("F_R: %d, F_G: %d, F_B: %d\n", color->F_R, color->F_G, color->F_B);
-	ft_printf("C_R: %d, C_G: %d, C_B: %d\n", color->C_R, color->C_G, color->C_B);
-	ft_free_array(map_array);
+	set_player(map);
+	map->map_flag = 0;
+	check_map(map, map->player_x, map->player_y);
+	if (map->map_flag == 1)
+		handle_error(ERR_MAP_CODE);
+	ft_free_array(map->map);
+	free(map);
 	free(checker);
+	free(color);
+	free(texture); // pasa algo con este free
 }

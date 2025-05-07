@@ -12,7 +12,7 @@
 
 #include "../inc/cub3D.h"
 
-int	main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int		map_fd;
 

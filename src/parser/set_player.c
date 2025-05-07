@@ -10,14 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../inc/cub3D.h"
 
-int	ft_arraylen(char **array)
+void	set_player_dir(t_map *map, int x, int y)
 {
-	int	i;
+	if (map->map[x][y] == 'W')
+		map->player_dir = WEST;
+	else if (map->map[x][y] == 'E')
+		map->player_dir = EAST;
+	else if (map->map[x][y] == 'N')
+		map->player_dir = NORTH;
+	else if (map->map[x][y] == 'S')
+		map->player_dir = SOUTH;
+}
 
-	i = 0;
-	while (array[i])
-		i++;
-	return (i);
+void	set_player(t_map *map)
+{
+	int	x;
+	int	y;
+
+	map->player_count = 0;
+	x = -1;
+	while (map->map[++x])
+	{
+		y = -1;
+		while (map->map[x][++y])
+		{
+			set_player_dir(map, x, y);
+			if (map->map[x][y] == 'W' || map->map[x][y] == 'E' ||
+				map->map[x][y] == 'N' || map->map[x][y] == 'S')
+			{
+				map->player_count++;
+				map->player_x = x;
+				map->player_y = y;
+				map->map[x][y] = '0';
+			}
+		}
+	}
+	if (map->player_count != 1)
+		handle_error(ERR_PLAYER_CODE);
 }

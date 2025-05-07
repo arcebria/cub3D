@@ -14,7 +14,7 @@
 
 void	check_extension(char *str)
 {
-	int i;
+	int	i;
 
 	i = ft_strcspn(str, ".");
 	if (!ft_strcmp(str + i, ".cub"))
@@ -31,12 +31,12 @@ t_checker	*init_checker_struct(t_checker *checker)
 	checker->map_flag = 0;
 	checker->count_texture = 0;
 	checker->count_color = 0;
-	checker->count_NO = 0;
-	checker->count_SO = 0;
-	checker->count_EA = 0;
-	checker->count_WE = 0;
-	checker->count_F = 0;
-	checker->count_C = 0;
+	checker->count_no = 0;
+	checker->count_so = 0;
+	checker->count_ea = 0;
+	checker->count_we = 0;
+	checker->count_f = 0;
+	checker->count_c = 0;
 	return (checker);
 }
 
@@ -53,7 +53,7 @@ int	advance_to_map(char **map_array, int i)
 		if (is_texture_color(map_array[i] + j) || map_array[i][0] == '_')
 			i++;
 		else
-			break;
+			break ;
 	}
 	return (i);
 }
@@ -82,6 +82,9 @@ t_map	*copy_map(char **map_array, t_map *map)
 	return (map);
 }
 
+//A partir de check_params_number se da por supuesto 
+// que el mapa esta en el orden correcto
+
 void	parsing(int map_fd)
 {
 	char		**map_array;
@@ -93,22 +96,20 @@ void	parsing(int map_fd)
 	map_array = get_map_array(map_fd);
 	checker = NULL;
 	checker = init_checker_struct(checker);
-	check_params_number(map_array, checker); // a partir de aqui se da por supuesto que el mapa esta en el orden correcto
-	check_param_place(map_array, checker);  // ahora hay que guardar los valores de los parametros en un struct y el mapa en otro
+	check_params_number(map_array, checker);
+	check_param_place(map_array, checker);
 	texture = NULL;
 	texture = get_textures(map_array, texture);
 	color = NULL;
 	color = get_colors(map_array, color);
 	map = NULL;
 	map = copy_map(map_array, map);
-	set_player(map);
-	map->map_flag = 0;
-	check_map(map, map->player_x, map->player_y);
-	if (map->map_flag == 1)
-		handle_error(ERR_MAP_CODE);
+	check_map(map);
 	ft_free_array(map->map);
 	free(map);
 	free(checker);
 	free(color);
-	free(texture); // pasa algo con este free
+	free(texture);
 }
+
+//pasa algo raro con el free de texture, no se libera la memoria

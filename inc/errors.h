@@ -39,6 +39,6 @@
 # define ERR_EMPTY_LINE_CODE 9
 # define ERR_DOOR_CODE 10
 
-void    handle_error(int error_code);
+void	handle_error(int error_code);
 
 #endif

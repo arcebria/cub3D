@@ -20,10 +20,10 @@ static int	ispace(int c)
 	return (0);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int	result;
-	int	sign;
+	long	result;
+	int		sign;
 
 	while (ispace(*nptr) == 1)
 		nptr++;

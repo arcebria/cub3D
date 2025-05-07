@@ -13,11 +13,12 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include "../libft/libft.h"
-#include "../libft/get_next_line.h"
-#include "../libft/ft_printf.h"
-#include "errors.h"
-#include "fcntl.h"
+# include "../libft/libft.h"
+# include "../libft/get_next_line.h"
+# include "../libft/ft_printf.h"
+# include "errors.h"
+# include <fcntl.h>
+# include <limits.h>
 
 # define WEST 0
 # define EAST 1
@@ -29,30 +30,37 @@ typedef struct s_checker
 	int	map_flag;
 	int	count_texture;
 	int	count_color;
-	int	count_NO;
-	int	count_SO;
-	int	count_EA;
-	int	count_WE;
-	int	count_F;
-	int	count_C;
+	int	count_no;
+	int	count_so;
+	int	count_ea;
+	int	count_we;
+	int	count_f;
+	int	count_c;
 }	t_checker;
 
 typedef struct s_texture
 {
-	char	*NO_path;
-	char	*SO_path;
-	char	*EA_path;
-	char	*WE_path;
+	char	*no_path;
+	char	*so_path;
+	char	*ea_path;
+	char	*we_path;
 }	t_texture;
+
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
 
 typedef struct s_color
 {
-	int	F_R;
-	int	F_G;
-	int	F_B;
-	int	C_R;
-	int	C_G;
-	int	C_B;
+	int	f_r;
+	int	f_g;
+	int	f_b;
+	int	c_r;
+	int	c_g;
+	int	c_b;
 }	t_color;
 
 typedef struct s_map
@@ -73,6 +81,7 @@ void		check_params_number(char **map_array, t_checker *checker);
 void		check_param_place(char **map_array, t_checker *checker);
 t_texture	*get_textures(char **map_array, t_texture *texture);
 t_color		*get_colors(char **map_array, t_color *color);
-//void get_textures(char *line);
+void		set_player(t_map *map);
+void		check_map(t_map *map);
 
 #endif

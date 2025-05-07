@@ -1,25 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/06 20:50:14 by arcebria          #+#    #+#             */
+/*   Updated: 2025/05/06 20:50:50 by arcebria         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3D.h"
 
 void	count_texture(char *str, t_checker *checker)
 {
 	if (!ft_strncmp(str, "NO", 2))
-		checker->count_NO++;
+		checker->count_no++;
 	else if (!ft_strncmp(str, "SO", 2))
-		checker->count_SO++;
+		checker->count_so++;
 	else if (!ft_strncmp(str, "EA", 2))
-		checker->count_EA++;
+		checker->count_ea++;
 	else if (!ft_strncmp(str, "WE", 2))
-		checker->count_WE++;
+		checker->count_we++;
 	checker->count_texture++;
 }
-
 
 void	count_color(char *str, t_checker *checker)
 {
 	if (!ft_strncmp(str, "F", 1))
-		checker->count_F++;
+		checker->count_f++;
 	else if (!ft_strncmp(str, "C", 1))
-		checker->count_C++;
+		checker->count_c++;
 	checker->count_color++;
 }
 
@@ -40,10 +51,10 @@ int	is_texture_color(char *str)
 	return (0);
 }
 
-void check_param_place(char **map_array, t_checker *checker)
+void	check_param_place(char **map_array, t_checker *checker)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map_array[i])
@@ -51,7 +62,7 @@ void check_param_place(char **map_array, t_checker *checker)
 		if (map_array[i + 1] && map_array[i][0] == '_')
 			i++;
 		j = 0;
-		while (ft_isspace(map_array[i][j])) // aqui hay un error si la siguiente linea esta vacia
+		while (ft_isspace(map_array[i][j]))
 			j++;
 		if (!is_texture_color(map_array[i] + j))
 			checker->map_flag = 1;
@@ -78,8 +89,9 @@ void	check_params_number(char **map_array, t_checker *checker)
 			count_color(map_array[i] + j, checker);
 		i++;
 	}
-	if (checker->count_texture != 4 || checker->count_color != 2 || checker->count_NO != 1 ||
-			checker->count_SO != 1 || checker->count_EA != 1 || checker->count_WE != 1 ||
-			checker->count_F != 1 || checker->count_C != 1)
+	if (checker->count_texture != 4 || checker->count_color != 2
+		|| checker->count_no != 1 || checker->count_so != 1
+		|| checker->count_ea != 1 || checker->count_we != 1
+		|| checker->count_f != 1 || checker->count_c != 1)
 		handle_error(ERR_TEXT_COLOR_NUMBER_CODE);
 }

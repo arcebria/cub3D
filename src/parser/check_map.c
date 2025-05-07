@@ -12,51 +12,12 @@
 
 #include "../../inc/cub3D.h"
 
-void	set_player(t_map *map)
-{
-	int	x;
-	int	y;
-
-	map->player_count = 0;
-	x = 0;
-	while (map->map[x])
-	{
-		y = 0;
-		while (map->map[x][y])
-		{
-			if (map->map[x][y] == 'W' || map->map[x][y] == 'E' ||
-				map->map[x][y] == 'N' || map->map[x][y] == 'S')
-			{
-				map->player_count++;
-				map->player_x = x;
-				map->player_y = y;
-				map->map[x][y] = '0';
-			}
-			if (map->map[x][y] == 'W')
-				map->player_dir = WEST;
-			else if (map->map[x][y] == 'E')
-				map->player_dir = EAST;
-			else if (map->map[x][y] == 'N')
-				map->player_dir = NORTH;
-			else if (map->map[x][y] == 'S')
-				map->player_dir = SOUTH;
-			y++;
-		}
-		x++;
-	}
-	if (map->player_count != 1)
-		handle_error(ERR_PLAYER_CODE);
-}
-
 void	verify_map(t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	int z = 0;
-	while (map->map[z])
-		ft_printf("%s\n", map->map[z++]);
 	while (map->map[i])
 	{
 		j = 0;
@@ -75,7 +36,7 @@ void	verify_map(t_map *map)
 
 void	verify_borders(t_map *map, int x, int y)
 {
-	if(x >= ft_arraylen(map->map) || x < 0)
+	if (x >= ft_arraylen(map->map) || x < 0)
 	{
 		map->map_flag = 1;
 		return ;
@@ -86,8 +47,7 @@ void	verify_borders(t_map *map, int x, int y)
 		map->map[x][y] = '.';
 	else if (map->map[x][y] == '2')
 		map->map[x][y] = 'p';
-	else if (map->map[x][y] == '\0' ||
-			map->map[x][y] == ' ')
+	else if (map->map[x][y] == '\0' || map->map[x][y] == ' ')
 	{
 		map->map[x][y] = 'e';
 		map->map_flag = 1;
@@ -108,10 +68,10 @@ void	verify_doors(t_map *map)
 	int	i;
 	int	j;
 
-	i = - 1;
+	i = -1;
 	while (map->map[++i])
 	{
-		j = - 1;
+		j = -1;
 		while (map->map[i][++j])
 		{
 			if (map->map[i][j] == '2')
@@ -125,16 +85,19 @@ void	verify_doors(t_map *map)
 				{
 					if (map->map[i + 1][j] == '0' || map->map[i - 1][j] == '0')
 						handle_error(ERR_DOOR_CODE);
-
 				}
 			}
 		}
 	}
 }
 
-void check_map(t_map *map, int x, int y)
+void	check_map(t_map *map)
 {
+	set_player(map);
 	verify_doors(map);
 	verify_map(map);
-	verify_borders(map, x, y);
+	map->map_flag = 0;
+	verify_borders(map, map->player_x, map->player_y);
+	if (map->map_flag == 1)
+		handle_error(ERR_MAP_CODE);
 }

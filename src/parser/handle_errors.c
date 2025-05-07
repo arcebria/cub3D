@@ -12,6 +12,8 @@
 
 #include "../../inc/cub3D.h"
 
+//void	free_structs()
+
 void	handle_error(int error_code)
 {
 	if (error_code == ERR_EXTENSION_CODE)

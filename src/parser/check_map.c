@@ -96,6 +96,7 @@ void	check_map(t_map *map)
 	set_player(map);
 	verify_doors(map);
 	verify_map(map);
+	normalize_map(map);
 	map->map_flag = 0;
 	verify_borders(map, map->player_x, map->player_y);
 	if (map->map_flag == 1)

@@ -83,5 +83,6 @@ t_texture	*get_textures(char **map_array, t_texture *texture);
 t_color		*get_colors(char **map_array, t_color *color);
 void		set_player(t_map *map);
 void		check_map(t_map *map);
+void		normalize_map(t_map *map);
 
 #endif

@@ -1,6 +1,6 @@
 # variables
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 SRCDIR = src
 OBJDIR = obj
 SRCS = $(shell find $(SRCDIR) -name "*.c")

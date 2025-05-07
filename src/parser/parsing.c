@@ -23,21 +23,21 @@ void	check_extension(char *str)
 		handle_error(ERR_EXTENSION_CODE);
 }
 
-t_checker	*init_checker_struct(t_checker *checker)
+void	init_checker(char **map_array)
 {
-	checker = malloc(sizeof(t_checker));
-	if (!checker)
-		handle_error(ERR_MALLOC_CODE);
-	checker->map_flag = 0;
-	checker->count_texture = 0;
-	checker->count_color = 0;
-	checker->count_no = 0;
-	checker->count_so = 0;
-	checker->count_ea = 0;
-	checker->count_we = 0;
-	checker->count_f = 0;
-	checker->count_c = 0;
-	return (checker);
+	t_checker	checker;
+
+	checker.map_flag = 0;
+	checker.count_texture = 0;
+	checker.count_color = 0;
+	checker.count_no = 0;
+	checker.count_so = 0;
+	checker.count_ea = 0;
+	checker.count_we = 0;
+	checker.count_f = 0;
+	checker.count_c = 0;
+	check_params_number(map_array, &checker);
+	check_param_place(map_array, &checker);
 }
 
 int	advance_to_map(char **map_array, int i)
@@ -88,16 +88,12 @@ t_map	*copy_map(char **map_array, t_map *map)
 void	parsing(int map_fd)
 {
 	char		**map_array;
-	t_checker	*checker;
 	t_texture	*texture;
 	t_color		*color;
 	t_map		*map;
 
 	map_array = get_map_array(map_fd);
-	checker = NULL;
-	checker = init_checker_struct(checker);
-	check_params_number(map_array, checker);
-	check_param_place(map_array, checker);
+	init_checker(map_array);
 	texture = NULL;
 	texture = get_textures(map_array, texture);
 	color = NULL;
@@ -107,9 +103,9 @@ void	parsing(int map_fd)
 	check_map(map);
 	ft_free_array(map->map);
 	free(map);
-	free(checker);
 	free(color);
 	free(texture);
 }
 
 //pasa algo raro con el free de texture, no se libera la memoria
+//aqui no hay que liberar memoria pero es para que no de por culo el sanitize

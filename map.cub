@@ -1,13 +1,10 @@
-F 2,2,2
-C 3,2,2
+  WE                            textures/test2/west.png
+NO      textures/test2/north.png
+SO textures/test2/south.png
+F      139, 69, 19
+EA textures/test2/east.png
+C 108, 187, 255
 
-NO nort_path
-SO south_path
-EA east_path
-WE west_path
-
-11111
-1S101111111
-10000000001
-10111111111
-111
+1111111
+1W00001
+1111111

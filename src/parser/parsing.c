@@ -45,9 +45,9 @@ int	advance_to_map(char **map_array, int i)
 	int	j;
 
 	i = 0;
-	j = 0;
 	while (map_array[i])
 	{
+		j = 0;
 		while (ft_isspace(map_array[i][j]))
 			j++;
 		if (is_texture_color(map_array[i] + j) || map_array[i][0] == '_')

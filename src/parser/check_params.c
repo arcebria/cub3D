@@ -60,7 +60,10 @@ void	check_param_place(char **map_array, t_checker *checker)
 	while (map_array[i])
 	{
 		if (map_array[i + 1] && map_array[i][0] == '_')
+		{
 			i++;
+			continue ;
+		}
 		j = 0;
 		while (ft_isspace(map_array[i][j]))
 			j++;

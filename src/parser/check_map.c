@@ -26,7 +26,8 @@ void	verify_map(t_map *map)
 			if (map->map[i][j] == '_')
 				handle_error(ERR_EMPTY_LINE_CODE);
 			else if (map->map[i][j] != '0' && map->map[i][j] != '2' &&
-				map->map[i][j] != ' ' && map->map[i][j] != '1')
+				map->map[i][j] != ' ' && map->map[i][j] != '1' &&
+				map->map[i][j] != '\t')
 				handle_error(ERR_CHARS_CODE);
 			j++;
 		}

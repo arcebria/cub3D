@@ -17,21 +17,28 @@ void	verify_map(t_map *map)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (map->map[i])
+	i = - 1;
+	while (map->map[++i])
 	{
-		j = 0;
-		while (map->map[i][j])
+		j = - 1;
+		while (map->map[i][++j])
 		{
-			if (map->map[i][j] == '_')
-				handle_error(ERR_EMPTY_LINE_CODE);
+			if (map->map[i][0] == '_')
+			{
+				while (map->map[i])
+				{
+					if (map->map[i][0] != '_')
+						handle_error(ERR_EMPTY_LINE_CODE);
+					else if (map->map[i][0] == '_' && !map->map[i + 1])
+						break ;
+					i++;
+				}
+			}
 			else if (map->map[i][j] != '0' && map->map[i][j] != '2' &&
 				map->map[i][j] != ' ' && map->map[i][j] != '1' &&
-				map->map[i][j] != '\t')
+				map->map[i][j] != '\t' && map->map[i][j] != '_')
 				handle_error(ERR_CHARS_CODE);
-			j++;
 		}
-		i++;
 	}
 }
 

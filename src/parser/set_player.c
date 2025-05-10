@@ -47,10 +47,6 @@ void	set_player(t_map *map)
 			}
 		}
 	}
-	//int i = 0;
-	//while (map->map[i])
-	//	ft_printf("%s\n", map->map[i++]);
-	//ft_printf("Player count: %d\n", map->player_count);
 	if (map->player_count != 1)
 		handle_error(ERR_PLAYER_CODE);
 }

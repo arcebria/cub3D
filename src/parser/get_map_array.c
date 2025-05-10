@@ -23,7 +23,7 @@ char	*join_lines(char *joined_line, char *current_line)
 	return (joined_line);
 }
 
-// metemos en todas las lineas vacias un '_' para identificarlos 
+// metemos en todas las lineas vacias un espacio ' ' para identificarlos 
 // en el array y gestionarlo posteriormente
 
 char	**get_map_array(int map_fd)
@@ -42,12 +42,12 @@ char	**get_map_array(int map_fd)
 		if (current_line && current_line[0] == '\n')
 		{
 			tmp = current_line;
-			current_line = ft_strjoin(tmp, "_\n");
+			current_line = ft_strjoin(tmp, " \n");
 			free(tmp);
 		}
 	}
 	map_array = ft_split(joined_line, '\n');
-	if (!map_array[0])
+	if (!map_array || !map_array[0])
 		handle_error(ERR_EMPTY_MAP_CODE);
 	free(joined_line);
 	return (map_array);

@@ -1,0 +1,26 @@
+   WE                            textures/wolfenstein/red_brick_w.png
+NO      textures/wolfenstein/red_brick_n.png
+
+
+
+SO textures/wolfenstein/red_brick_s.png
+
+F   139,    90,     43
+
+EA textures/wolfenstein/red_brick_e.png
+
+
+
+
+C 102,163,255
+
+1111111
+100C001
+1012101
+101C101
+1012101
+1000001
+100F001
+1N00001
+1111111
+

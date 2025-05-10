@@ -42,7 +42,8 @@ t_texture	*get_textures(char **map_array, t_texture *texture)
 		j = 0;
 		while (ft_isspace(map_array[i][j]))
 			j++;
-		if (is_texture_color(map_array[i] + j) == 2)
+		if (is_texture_color(map_array[i] + j) == 2
+			|| is_texture_color(map_array[i] + j) == 0)
 			return (NULL);
 		z = j;
 		j += 2;

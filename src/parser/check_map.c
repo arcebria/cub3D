@@ -17,26 +17,25 @@ void	verify_map(t_map *map)
 	int	i;
 	int	j;
 
-	i = - 1;
+	i = -1;
 	while (map->map[++i])
 	{
-		j = - 1;
+		j = -1;
 		while (map->map[i][++j])
 		{
-			if (map->map[i][0] == '_')
+			if (map->map[i][0] == ' ' && !map->map[i][1])
 			{
 				while (map->map[i])
 				{
-					if (map->map[i][0] != '_')
+					if (map->map[i][0] != ' ')
 						handle_error(ERR_EMPTY_LINE_CODE);
-					else if (map->map[i][0] == '_' && !map->map[i + 1])
+					else if (map->map[i][0] == ' ' && !map->map[i + 1])
 						break ;
 					i++;
 				}
 			}
 			else if (map->map[i][j] != '0' && map->map[i][j] != '2' &&
-				map->map[i][j] != ' ' && map->map[i][j] != '1' &&
-				map->map[i][j] != '\t' && map->map[i][j] != '_')
+					map->map[i][j] != ' ' && map->map[i][j] != '1')
 				handle_error(ERR_CHARS_CODE);
 		}
 	}

@@ -59,7 +59,7 @@ void	check_param_place(char **map_array, t_checker *checker)
 	i = 0;
 	while (map_array[i])
 	{
-		if (map_array[i + 1] && map_array[i][0] == '_')
+		if (map_array[i + 1] && map_array[i][0] == ' ' && !map_array[i][1])
 		{
 			i++;
 			continue ;

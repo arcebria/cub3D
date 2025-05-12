@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   get_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:50:14 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/06 20:50:50 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/12 19:45:05 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ t_color	*get_colors(char **map_array, t_color *color)
 		while (ft_isspace(map_array[i][j]))
 			j++;
 		z = j;
-		j++;
+		if (map_array[i][j])
+			j++;
 		while (ft_isspace(map_array[i][j]))
 			j++;
 		if (!ft_strncmp(map_array[i] + z, "F", 1))

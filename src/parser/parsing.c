@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 15:22:54 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/06 20:51:16 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/13 17:40:07 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_map	*copy_map(char **map_array, t_map *map)
 	return (map);
 }
 
-//A partir de check_params_number se da por supuesto 
+//A partir de check_params_number se da por supuesto
 // que el mapa esta en el orden correcto
 
 void	parsing(int map_fd)
@@ -93,20 +93,14 @@ void	parsing(int map_fd)
 	t_color		*color;
 	t_map		*map;
 
+	texture = NULL;
+	color = NULL;
+	map = NULL;
 	map_array = get_map_array(map_fd);
 	init_checker(map_array);
-	texture = NULL;
 	texture = get_textures(map_array, texture);
-	color = NULL;
 	color = get_colors(map_array, color);
-	map = NULL;
 	map = copy_map(map_array, map);
 	check_map(map);
-	ft_free_array(map->map);
-	free(map);
-	free(color);
-	free(texture);
+	free_structs(texture, color, map);
 }
-
-//pasa algo raro con el free de texture, no se libera la memoria
-//aqui no hay que liberar memoria pero es para que no de por culo el sanitize

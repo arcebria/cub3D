@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:01:32 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/06 18:34:53 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/13 17:39:44 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ t_color		*get_colors(char **map_array, t_color *color);
 void		set_player(t_map *map);
 void		check_map(t_map *map);
 void		normalize_map(t_map *map);
+void		free_structs(t_texture *texture, t_color *color, t_map *map);
 
 #endif

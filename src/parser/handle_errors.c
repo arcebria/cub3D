@@ -6,13 +6,35 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 15:44:50 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/06 20:46:22 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/13 17:39:28 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-//void	free_structs()
+void	free_structs(t_texture *texture, t_color *color, t_map *map)
+{
+	if (texture)
+	{
+		if (texture->no_path)
+			free(texture->no_path);
+		if (texture->so_path)
+			free(texture->so_path);
+		if (texture->ea_path)
+			free(texture->ea_path);
+		if (texture->we_path)
+			free(texture->we_path);
+		free (texture);
+	}
+	if (color)
+		free(color);
+	if (map)
+	{
+		if (map->map)
+			ft_free_array(map->map);
+		free(map);
+	}
+}
 
 void	handle_error(int error_code)
 {

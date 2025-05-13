@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"cub3d.h": "c",
-		"errors.h": "c"
+		"errors.h": "c",
+		"stdio.h": "c"
 	}
 }

@@ -1,5 +1,5 @@
 # variables
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g
 SRCDIR = src
 OBJDIR = obj

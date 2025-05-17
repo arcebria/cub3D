@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:50:14 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/06 20:50:50 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/16 20:20:15 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,22 @@ void	verify_map(t_map *map)
 	}
 }
 
+void	recall_function(t_map *map, int x, int y)
+{
+	verify_borders(map, x + 1, y);
+	verify_borders(map, x - 1, y);
+	verify_borders(map, x, y + 1);
+	verify_borders(map, x, y - 1);
+	verify_borders(map, x + 1, y + 1);
+	verify_borders(map, x - 1, y - 1);
+	verify_borders(map, x - 1, y + 1);
+	verify_borders(map, x + 1, y - 1);
+}
+
 void	verify_borders(t_map *map, int x, int y)
 {
-	if (x >= ft_arraylen(map->map) || x < 0)
+	if (x >= ft_arraylen(map->map) || x < 0 || y < 0
+		|| y >= (int)ft_strlen(map->map[0]))
 	{
 		map->map_flag = 1;
 		return ;
@@ -60,14 +73,7 @@ void	verify_borders(t_map *map, int x, int y)
 		map->map_flag = 1;
 		return ;
 	}
-	verify_borders(map, x + 1, y);
-	verify_borders(map, x - 1, y);
-	verify_borders(map, x, y + 1);
-	verify_borders(map, x, y - 1);
-	verify_borders(map, x + 1, y + 1);
-	verify_borders(map, x - 1, y - 1);
-	verify_borders(map, x - 1, y + 1);
-	verify_borders(map, x + 1, y - 1);
+	recall_function(map, x, y);
 }
 
 void	verify_doors(t_map *map)
@@ -108,4 +114,6 @@ void	check_map(t_map *map)
 	verify_borders(map, map->player_x, map->player_y);
 	if (map->map_flag == 1)
 		handle_error(ERR_MAP_CODE);
+	map->map_width = ft_strlen(map->map[0]);
+	map->map_height = ft_arraylen(map->map);
 }

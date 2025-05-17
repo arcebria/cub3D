@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:39:44 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/05 20:47:04 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/17 20:20:00 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ char	*ft_strcpy(char *dest, char *src);
 char	*ft_strcat(char *dest, char *src);
 int		ft_issigneddigit(char *str);
 int		ft_arraylen(char **array);
+double	ft_fabs(double x);
 
 #endif

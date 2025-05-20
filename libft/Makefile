@@ -51,6 +51,7 @@ SRCS =  ft_isascii.c \
 	ft_issigneddigit.c \
 	ft_arraylen.c \
 	ft_fabs.c \
+	ft_floor.c \
 	ft_printf.c type_cs.c type_num.c type_xXp.c \
 	get_next_line.c get_next_line_utils.c
 

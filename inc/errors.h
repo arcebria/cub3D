@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 18:38:28 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/06 20:46:08 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:42:11 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define ERR_CHARS "Error\nInvalid characters in map file\n"
 # define ERR_EMPTY_LINE "Error\nEmpty line in map file\n"
 # define ERR_DOOR "Error\nInvalid door placement\n"
+# define ERR_TEXTURE "Error\nFailed to load texture\n"
 
 # define ERR_EXTENSION_CODE 0
 # define ERR_EMPTY_MAP_CODE 1
@@ -38,6 +39,7 @@
 # define ERR_CHARS_CODE 8
 # define ERR_EMPTY_LINE_CODE 9
 # define ERR_DOOR_CODE 10
+# define ERR_TEXTURE_CODE 11
 
 void	handle_error(int error_code);
 

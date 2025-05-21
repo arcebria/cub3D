@@ -6,13 +6,14 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:01:32 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/17 20:43:38 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/21 18:17:40 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include "../MLX42/include/MLX42/MLX42.h"
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 # include "../libft/ft_printf.h"
@@ -82,16 +83,50 @@ typedef struct s_map
 
 typedef struct s_game
 {
-	double	dir_x;
-	double	dir_y;
-	double	player_x;
-	double	player_y;
-	double	plane_x;
-	double	plane_y;
-	t_color	*color;
-	t_texture	*texture;
-	t_map	*map;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	mlx_texture_t	*wall_texture;
+	mlx_texture_t	*north_texture;
+	mlx_texture_t	*south_texture;
+	mlx_texture_t	*east_texture;
+	mlx_texture_t	*west_texture;
+	double			dir_x;
+	double			dir_y;
+	double			player_x;
+	double			player_y;
+	double			plane_x;
+	double			plane_y;
+	t_color			*color;
+	t_texture		*texture;
+	t_map			*map;
 }	t_game;
+
+typedef struct s_raycast
+{
+	double			camera_x;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	int				map_x;
+	int				map_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	int				step_x;
+	int				step_y;
+	int				hit;
+	int				side;
+	double			wall_dist;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	double			hit_in_wall;
+	int				tex_width;
+	int				tex_height;
+	int				tex_x;
+	int				tex_y;
+	mlx_texture_t	*wall_texture;
+}	t_raycast;
 
 t_game		*parsing(int map_fd, t_game *game);
 void		check_extension(char *str);

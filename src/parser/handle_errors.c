@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 15:44:50 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/13 17:39:28 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/21 17:42:44 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ void	handle_error(int error_code)
 		ft_putstr_fd(ERR_EMPTY_LINE, 2);
 	else if (error_code == ERR_DOOR_CODE)
 		ft_putstr_fd(ERR_DOOR, 2);
+	else if (error_code == ERR_TEXTURE_CODE)
+		ft_putstr_fd(ERR_TEXTURE, 2);
 	exit(error_code);
 }

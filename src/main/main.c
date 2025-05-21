@@ -6,11 +6,11 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:55:28 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/16 20:20:33 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/21 18:45:22 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3D.h"
+#include "../../inc/cub3D.h"
 
 int	main(int argc, char **argv)
 {

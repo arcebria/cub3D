@@ -6,44 +6,20 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:53:08 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/21 18:18:28 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/21 22:03:26 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
-
-//me parece que esto no hace falta, simplemente cuandp haya que cambiar una valor fuera de la
-//funcion principal se le pasa la direccion de memoria del struct y se cambia el valor alli
-//no hace falta inicializar ninguna variable porque ya se inicializan en las mismas funciones
-/*void	init_raycast_struct(t_raycast *values)
-{
-	values->camera_x = 0;
-	values->ray_dir_x = 0;
-	values->ray_dir_y = 0;
-	values->map_x = 0;
-	values->map_y = 0;
-	values->delta_dist_x = 0;
-	values->delta_dist_y = 0;
-	values->side_dist_x = 0;
-	values->side_dist_y = 0;
-	values->step_x = 0;
-	values->step_y = 0;
-	values->hit = 0;
-	values->side = 0;
-	values->wall_dist = 0;
-	values->tex_width = 0;
-	values->tex_height = 0;
-	values->tex_x = 0;
-	values->tex_y = 0;
-}*/
+#include <math.h>
 
 void	raycasting(t_game *game)
 {
 	t_raycast	values;
 	int			x;
 
-	//init_raycast_struct(&values);
 	x = -1;
+	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	while (++x < SCREEN_WIDTH)
 	{
 		//camera x convierte cada pixel(i) dentro de un rango entre -1 a 1
@@ -143,8 +119,8 @@ void	raycasting(t_game *game)
 			values.hit_in_wall = game->player_x + values.wall_dist * values.ray_dir_x;
 		values.hit_in_wall = values.hit_in_wall - ft_floor(values.hit_in_wall);
 		//--------------------------------------------------------------
-		values.tex_height = game->wall_texture->height;
-		values.tex_width = game->wall_texture->width;
+		values.tex_height = values.wall_texture->height;
+		values.tex_width = values.wall_texture->width;
 		values.tex_x = (int)(values.hit_in_wall * (double)values.tex_width);
 		if (values.side == 0 && values.ray_dir_x < 0)
 			values.tex_x = values.tex_width - values.tex_x - 1;
@@ -159,7 +135,7 @@ void	raycasting(t_game *game)
 		{
 			screen_to_tex = y * 256 - SCREEN_HEIGHT * 128 + values.line_height * 128;
 			values.tex_y = ((screen_to_tex * values.tex_height) / values.line_height) / 256;
-			pixel = &game->wall_texture->pixels[4 * (values.tex_width * values.tex_y + values.tex_x)];
+			pixel = &values.wall_texture->pixels[4 * (values.tex_width * values.tex_y + values.tex_x)];
 			color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
 			mlx_put_pixel(game->img, x, y, color);
 			y++;
@@ -167,7 +143,132 @@ void	raycasting(t_game *game)
 	}
 }
 
+/*void raycasting(t_game *game)
+{
+    mlx_image_to_window(game->mlx, game->img, 0, 0);
+    for (int y = 0; y < SCREEN_HEIGHT; y++)
+    	for (int x = 0; x < SCREEN_WIDTH; x++)
+        mlx_put_pixel(game->img, x, y, 0x000000FF);
+
+
+    for (int x = 0; x < SCREEN_WIDTH; x++)
+    {
+        double cameraX = 2 * x / (double)SCREEN_WIDTH - 1;
+        double rayDirX = game->dir_x + game->plane_x * cameraX;
+        double rayDirY = game->dir_y + game->plane_y * cameraX;
+
+        int mapX = (int)game->player_x;
+        int mapY = (int)game->player_y;
+
+        double deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
+        double deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
+        double sideDistX, sideDistY;
+
+        int stepX, stepY;
+        int hit = 0, side;
+
+        if (rayDirX < 0)
+        {
+            stepX = -1;
+            sideDistX = (game->player_x - mapX) * deltaDistX;
+        }
+        else
+        {
+            stepX = 1;
+            sideDistX = (mapX + 1.0 - game->player_x) * deltaDistX;
+        }
+        if (rayDirY < 0)
+        {
+            stepY = -1;
+            sideDistY = (game->player_y - mapY) * deltaDistY;
+        }
+        else
+        {
+            stepY = 1;
+            sideDistY = (mapY + 1.0 - game->player_y) * deltaDistY;
+        }
+
+        while (hit == 0)
+        {
+            if (sideDistX < sideDistY)
+            {
+                sideDistX += deltaDistX;
+                mapX += stepX;
+                side = 0;
+            }
+            else
+            {
+                sideDistY += deltaDistY;
+                mapY += stepY;
+                side = 1;
+            }
+            if (game->map->map[mapY][mapX] == '1')
+                hit = 1;
+        }
+
+        if (side == 0)
+        {
+            if (rayDirX < 0)
+                game->wall_texture = game->west_texture;
+            else
+                game->wall_texture = game->east_texture;
+        }
+        if (side == 1)
+        {
+            if (rayDirY < 0)
+                game->wall_texture = game->north_texture;
+            else
+                game->wall_texture = game->south_texture;
+        }
+
+        double perpWallDist = (side == 0) ? (sideDistX - deltaDistX) : (sideDistY - deltaDistY);
+
+        int lineHeight = (int)(SCREEN_HEIGHT / perpWallDist);
+        int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
+        if (drawStart < 0)
+            drawStart = 0;
+        int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
+        if (drawEnd >= SCREEN_HEIGHT)
+            drawEnd = SCREEN_HEIGHT - 1;
+
+        double wallX;
+        if (side == 0)
+            wallX = game->player_y + perpWallDist * rayDirY;
+        else
+            wallX = game->player_x + perpWallDist * rayDirX;
+        wallX -= floor(wallX); //floor es una funcion que redondea hacia abajo
+
+        int texWidth = game->wall_texture->width;
+        int texHeight = game->wall_texture->height;
+        int texX = (int)(wallX * (double)texWidth);
+        if (side == 0 && rayDirX < 0) //golpea pared oeste
+            texX = texWidth - texX - 1;
+        if (side == 1 && rayDirY > 0) //golpea pared sur
+            texX = texWidth - texX - 1;
+
+        for (int y = drawStart; y < drawEnd; y++)
+        {
+            int d = y * 256 - SCREEN_HEIGHT * 128 + lineHeight * 128;// se reescalan los valores para facilitar el calculo del ordenador y evitar perdida de decimales
+            int texY = ((d * texHeight) / lineHeight) / 256;
+            uint8_t *pixel = &game->wall_texture->pixels[4 * (texWidth * texY + texX)];
+            uint32_t color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
+            mlx_put_pixel(game->img, x, y, color);
+        }
+    }
+}*/
+
+void	render_frame(void *param)
+{
+	t_game	*game = (t_game *)param;
+	raycasting(game);
+}
+
 void	init_game(t_game *game)
 {
-	raycasting(game);
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D", true);
+	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	mlx_loop_hook(game->mlx, &render_frame, game);
+	mlx_loop(game->mlx);
+	mlx_terminate(game->mlx);
 }

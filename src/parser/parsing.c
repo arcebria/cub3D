@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 15:22:54 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/16 19:42:57 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:32:38 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,5 @@ t_game	*parsing(int map_fd, t_game *game)
 	map = copy_map(map_array, map);
 	check_map(map);
 	game = init_game_struct(game, map, texture, color);
-	//free_structs(texture, color, map);
-	return(game);
+	return (game);
 }

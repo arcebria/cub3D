@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:01:32 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/21 21:44:09 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:39:39 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <stdio.h>
+# include <math.h>
 
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
@@ -92,8 +93,8 @@ typedef struct s_game
 	mlx_texture_t	*west_texture;
 	double			dir_x;
 	double			dir_y;
-	double			player_x;
-	double			player_y;
+	double			pos_x;
+	double			pos_y;
 	double			plane_x;
 	double			plane_y;
 	t_color			*color;
@@ -117,7 +118,7 @@ typedef struct s_raycast
 	int				hit;
 	int				side;
 	double			wall_dist;
-	int				line_height;
+	int				wall_height;
 	int				draw_start;
 	int				draw_end;
 	double			hit_in_wall;
@@ -141,7 +142,20 @@ void		check_map(t_map *map);
 void		normalize_map(t_map *map);
 void		verify_borders(t_map *map, int x, int y);
 void		free_structs(t_texture *texture, t_color *color, t_map *map);
-t_game		*init_game_struct(t_game *game, t_map *map, t_texture *texture, t_color *color);
+
+// Raycasting
+
+t_game		*init_game_struct(t_game *game, t_map *map,
+				t_texture *texture, t_color *color);
 void		init_game(t_game *game);
+void		put_color_ceiling_floor(t_game *game);
+void		calculate_raydir(t_game *game, t_raycast *values, int x);
+void		calculate_delta_dist(t_raycast *values);
+void		calculate_side_dist(t_game *game, t_raycast *values);
+void		calculate_hits(t_game *game, t_raycast *values);
+void		assign_textures(t_game *game, t_raycast *values);
+void		calculate_wall_height(t_raycast *values);
+void		calculate_texture_x(t_game *game, t_raycast *values);
+void		render_textures(t_game *game, t_raycast *values, int x);
 
 #endif

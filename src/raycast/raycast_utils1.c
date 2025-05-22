@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 18:18:14 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/22 18:35:37 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:54:53 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,26 @@ void	put_color_ceiling_floor(t_game *game)
 {
 	int	x;
 	int	y;
+	uint32_t	ceiling_color;
+	uint32_t	floor_color;
 
+	ceiling_color = (game->color->c_r << 24) | (game->color->c_g << 16)
+		| (game->color->c_b << 8) | 255;
+	floor_color = (game->color->f_r << 24) | (game->color->f_g << 16)
+		| (game->color->f_b << 8) | 255;
 	y = 0;
 	while (y < SCREEN_HEIGHT / 2)
 	{
 		x = -1;
 		while (++x < SCREEN_WIDTH)
-			mlx_put_pixel(game->img, x, y, 0xFF000000);
+			mlx_put_pixel(game->img, x, y, ceiling_color);
 		y++;
 	}
 	while (y < SCREEN_HEIGHT)
 	{
 		x = -1;
 		while (++x < SCREEN_WIDTH)
-			mlx_put_pixel(game->img, x, y, 0x00FFFFFF);
+			mlx_put_pixel(game->img, x, y, floor_color);
 		y++;
 	}
 }

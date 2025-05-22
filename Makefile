@@ -4,7 +4,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast -g #-fsanitize=address
 LIBFT_DIR := libft
 LIBMLX := MLX42
-HEADERS := -I ./include -I $(LIBMLX)/include/MLX42/MLX42.h -I $(LIBFT_DIR)
+HEADERS := -I ./include -I $(LIBMLX)/include/MLX42 -I $(LIBFT_DIR)
 LIBS := $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm $(LIBFT_DIR)/libft.a
 SRCDIR = src/parser src/raycast src/main
 OBJDIR = obj
@@ -17,16 +17,24 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT_DIR)/libft.a $(LIBMLX)/build/libmlx42.a Makefile
 	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
-	mkdir -p $(OBJ_DIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
 
 $(LIBFT_DIR)/libft.a:
 	make -C $(LIBFT_DIR)
 
-$(LIBMLX)/build/libmlx42.a:
-	cmake -B $(LIBMLX)/build -S $(LIBMLX) > /dev/null
-	cmake --build $(LIBMLX)/build --target mlx42 > /dev/null
+$(LIBMLX)/build/libmlx42.a: $(LIBMLX)
+	@if [ ! -d "$(LIBMLX)" ]; then \
+		echo "Cloning MLX42 repository..."; \
+        git clone --recurse-submodules https://github.com/codam-coding-college/MLX42.git $(LIBMLX); \
+    fi
+		rm -rf $(LIBMLX)/build
+		cmake -B $(LIBMLX)/build -S $(LIBMLX) > /dev/null
+		cmake --build $(LIBMLX)/build --target mlx42 > /dev/null
+
+$(LIBMLX):
+    git clone --recurse-submodules https://github.com/codam-coding-college/MLX42.git $(LIBMLX)
 
 clean:
 	rm -rf $(OBJDIR)
@@ -34,6 +42,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -rf $(LIBMLX)
 	make fclean -C ./libft
 
 re: fclean all

@@ -38,11 +38,11 @@ void	raycasting(t_game *game)
 		if (values.ray_dir_x == 0)
 			values.delta_dist_x = 1e30;
 		else
-			values.delta_dist_x = ft_fabs(1 / values.ray_dir_x);
+			values.delta_dist_x = fabs(1 / values.ray_dir_x);
 		if (values.ray_dir_y == 0)
 			values.delta_dist_y = 1e30;
 		else
-			values.delta_dist_y = ft_fabs(1 / values.ray_dir_y);
+			values.delta_dist_y = fabs(1 / values.ray_dir_y);
 		//-------------------------------------------------------------
 		//aqui se divide por ray_dir por la misma razon que antes, dividimos la distancia real dentro de las cuadriculas entre el jugador y la siguiente linea
 		//y luego dividimos por la inclinacion del rayo para medir la distancia del rayo desde la posicion del rayo hasta la siguiente linea del eje
@@ -117,7 +117,7 @@ void	raycasting(t_game *game)
 			values.hit_in_wall = game->player_y + values.wall_dist * values.ray_dir_y;
 		else if (values.side == 1)
 			values.hit_in_wall = game->player_x + values.wall_dist * values.ray_dir_x;
-		values.hit_in_wall = values.hit_in_wall - ft_floor(values.hit_in_wall);
+		values.hit_in_wall = values.hit_in_wall - floor(values.hit_in_wall);
 		//--------------------------------------------------------------
 		values.tex_height = values.wall_texture->height;
 		values.tex_width = values.wall_texture->width;

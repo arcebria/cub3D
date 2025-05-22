@@ -94,7 +94,7 @@ void	raycasting(t_game *game)
 			else
 				values.wall_texture = game->west_texture;
 		}
-		if (values.side == 1)
+		else // values.side == 1
 		{
 			if (values.ray_dir_y > 0)
 				values.wall_texture = game->south_texture;
@@ -102,9 +102,9 @@ void	raycasting(t_game *game)
 				values.wall_texture = game->north_texture;
 		}
 		//--------------------------------------------------------------
-		if (values.hit == 0)
-			values.wall_dist = values.side_dist_x  - values.delta_dist_x;
-		else if (values.hit == 1)
+		if (values.side == 0)
+			values.wall_dist = values.side_dist_x - values.delta_dist_x;
+		else
 			values.wall_dist = values.side_dist_y - values.delta_dist_y;
 		values.line_height = (int)(SCREEN_HEIGHT / values.wall_dist);
 		values.draw_start = SCREEN_HEIGHT / 2 - values.line_height / 2;
@@ -143,119 +143,119 @@ void	raycasting(t_game *game)
 	}
 }
 
-/*void raycasting(t_game *game)
-{
-    mlx_image_to_window(game->mlx, game->img, 0, 0);
-    for (int y = 0; y < SCREEN_HEIGHT; y++)
-    	for (int x = 0; x < SCREEN_WIDTH; x++)
-        mlx_put_pixel(game->img, x, y, 0x000000FF);
+// void raycasting(t_game *game)
+// {
+//     mlx_image_to_window(game->mlx, game->img, 0, 0);
+//     for (int y = 0; y < SCREEN_HEIGHT; y++)
+//     	for (int x = 0; x < SCREEN_WIDTH; x++)
+//         mlx_put_pixel(game->img, x, y, 0x000000FF);
 
 
-    for (int x = 0; x < SCREEN_WIDTH; x++)
-    {
-        double cameraX = 2 * x / (double)SCREEN_WIDTH - 1;
-        double rayDirX = game->dir_x + game->plane_x * cameraX;
-        double rayDirY = game->dir_y + game->plane_y * cameraX;
+//     for (int x = 0; x < SCREEN_WIDTH; x++)
+//     {
+//         double cameraX = 2 * x / (double)SCREEN_WIDTH - 1;
+//         double rayDirX = game->dir_x + game->plane_x * cameraX;
+//         double rayDirY = game->dir_y + game->plane_y * cameraX;
 
-        int mapX = (int)game->player_x;
-        int mapY = (int)game->player_y;
+//         int mapX = (int)game->player_x;
+//         int mapY = (int)game->player_y;
 
-        double deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
-        double deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
-        double sideDistX, sideDistY;
+//         double deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
+//         double deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
+//         double sideDistX, sideDistY;
 
-        int stepX, stepY;
-        int hit = 0, side;
+//         int stepX, stepY;
+//         int hit = 0, side;
 
-        if (rayDirX < 0)
-        {
-            stepX = -1;
-            sideDistX = (game->player_x - mapX) * deltaDistX;
-        }
-        else
-        {
-            stepX = 1;
-            sideDistX = (mapX + 1.0 - game->player_x) * deltaDistX;
-        }
-        if (rayDirY < 0)
-        {
-            stepY = -1;
-            sideDistY = (game->player_y - mapY) * deltaDistY;
-        }
-        else
-        {
-            stepY = 1;
-            sideDistY = (mapY + 1.0 - game->player_y) * deltaDistY;
-        }
+//         if (rayDirX < 0)
+//         {
+//             stepX = -1;
+//             sideDistX = (game->player_x - mapX) * deltaDistX;
+//         }
+//         else
+//         {
+//             stepX = 1;
+//             sideDistX = (mapX + 1.0 - game->player_x) * deltaDistX;
+//         }
+//         if (rayDirY < 0)
+//         {
+//             stepY = -1;
+//             sideDistY = (game->player_y - mapY) * deltaDistY;
+//         }
+//         else
+//         {
+//             stepY = 1;
+//             sideDistY = (mapY + 1.0 - game->player_y) * deltaDistY;
+//         }
 
-        while (hit == 0)
-        {
-            if (sideDistX < sideDistY)
-            {
-                sideDistX += deltaDistX;
-                mapX += stepX;
-                side = 0;
-            }
-            else
-            {
-                sideDistY += deltaDistY;
-                mapY += stepY;
-                side = 1;
-            }
-            if (game->map->map[mapY][mapX] == '1')
-                hit = 1;
-        }
+//         while (hit == 0)
+//         {
+//             if (sideDistX < sideDistY)
+//             {
+//                 sideDistX += deltaDistX;
+//                 mapX += stepX;
+//                 side = 0;
+//             }
+//             else
+//             {
+//                 sideDistY += deltaDistY;
+//                 mapY += stepY;
+//                 side = 1;
+//             }
+//             if (game->map->map[mapY][mapX] == '1')
+//                 hit = 1;
+//         }
 
-        if (side == 0)
-        {
-            if (rayDirX < 0)
-                game->wall_texture = game->west_texture;
-            else
-                game->wall_texture = game->east_texture;
-        }
-        if (side == 1)
-        {
-            if (rayDirY < 0)
-                game->wall_texture = game->north_texture;
-            else
-                game->wall_texture = game->south_texture;
-        }
+//         if (side == 0)
+//         {
+//             if (rayDirX < 0)
+//                 game->wall_texture = game->west_texture;
+//             else
+//                 game->wall_texture = game->east_texture;
+//         }
+//         if (side == 1)
+//         {
+//             if (rayDirY < 0)
+//                 game->wall_texture = game->north_texture;
+//             else
+//                 game->wall_texture = game->south_texture;
+//         }
 
-        double perpWallDist = (side == 0) ? (sideDistX - deltaDistX) : (sideDistY - deltaDistY);
+//         double perpWallDist = (side == 0) ? (sideDistX - deltaDistX) : (sideDistY - deltaDistY);
 
-        int lineHeight = (int)(SCREEN_HEIGHT / perpWallDist);
-        int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
-        if (drawStart < 0)
-            drawStart = 0;
-        int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
-        if (drawEnd >= SCREEN_HEIGHT)
-            drawEnd = SCREEN_HEIGHT - 1;
+//         int lineHeight = (int)(SCREEN_HEIGHT / perpWallDist);
+//         int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
+//         if (drawStart < 0)
+//             drawStart = 0;
+//         int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
+//         if (drawEnd >= SCREEN_HEIGHT)
+//             drawEnd = SCREEN_HEIGHT - 1;
 
-        double wallX;
-        if (side == 0)
-            wallX = game->player_y + perpWallDist * rayDirY;
-        else
-            wallX = game->player_x + perpWallDist * rayDirX;
-        wallX -= floor(wallX); //floor es una funcion que redondea hacia abajo
+//         double wallX;
+//         if (side == 0)
+//             wallX = game->player_y + perpWallDist * rayDirY;
+//         else
+//             wallX = game->player_x + perpWallDist * rayDirX;
+//         wallX -= floor(wallX); //floor es una funcion que redondea hacia abajo
 
-        int texWidth = game->wall_texture->width;
-        int texHeight = game->wall_texture->height;
-        int texX = (int)(wallX * (double)texWidth);
-        if (side == 0 && rayDirX < 0) //golpea pared oeste
-            texX = texWidth - texX - 1;
-        if (side == 1 && rayDirY > 0) //golpea pared sur
-            texX = texWidth - texX - 1;
+//         int texWidth = game->wall_texture->width;
+//         int texHeight = game->wall_texture->height;
+//         int texX = (int)(wallX * (double)texWidth);
+//         if (side == 0 && rayDirX < 0) //golpea pared oeste
+//             texX = texWidth - texX - 1;
+//         if (side == 1 && rayDirY > 0) //golpea pared sur
+//             texX = texWidth - texX - 1;
 
-        for (int y = drawStart; y < drawEnd; y++)
-        {
-            int d = y * 256 - SCREEN_HEIGHT * 128 + lineHeight * 128;// se reescalan los valores para facilitar el calculo del ordenador y evitar perdida de decimales
-            int texY = ((d * texHeight) / lineHeight) / 256;
-            uint8_t *pixel = &game->wall_texture->pixels[4 * (texWidth * texY + texX)];
-            uint32_t color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
-            mlx_put_pixel(game->img, x, y, color);
-        }
-    }
-}*/
+//         for (int y = drawStart; y < drawEnd; y++)
+//         {
+//             int d = y * 256 - SCREEN_HEIGHT * 128 + lineHeight * 128;// se reescalan los valores para facilitar el calculo del ordenador y evitar perdida de decimales
+//             int texY = ((d * texHeight) / lineHeight) / 256;
+//             uint8_t *pixel = &game->wall_texture->pixels[4 * (texWidth * texY + texX)];
+//             uint32_t color = (pixel[0] << 24) | (pixel[1] << 16) | (pixel[2] << 8) | pixel[3];
+//             mlx_put_pixel(game->img, x, y, color);
+//         }
+//     }
+// }
 
 void	render_frame(void *param)
 {

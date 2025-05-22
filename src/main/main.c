@@ -6,11 +6,23 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:55:28 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/21 18:45:22 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:56:47 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
+
+
+void	init_game(t_game *game)
+{
+	mlx_set_setting(MLX_STRETCH_IMAGE, true);
+	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D", true);
+	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	mlx_loop_hook(game->mlx, &render_frame, game);
+	mlx_key_hook(game->mlx, &movement, game);
+	mlx_loop(game->mlx);
+	mlx_terminate(game->mlx);
+}
 
 int	main(int argc, char **argv)
 {

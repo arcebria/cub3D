@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:01:32 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/22 18:39:39 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:49:17 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
 # define FOV 0.6
+# define MOVE_SPEED 0.1
 
 # define WEST 0
 # define EAST 1
@@ -129,6 +130,7 @@ typedef struct s_raycast
 	mlx_texture_t	*wall_texture;
 }	t_raycast;
 
+//parsing
 t_game		*parsing(int map_fd, t_game *game);
 void		check_extension(char *str);
 char		**get_map_array(int map_fd);
@@ -141,10 +143,11 @@ void		set_player(t_map *map);
 void		check_map(t_map *map);
 void		normalize_map(t_map *map);
 void		verify_borders(t_map *map, int x, int y);
-void		free_structs(t_texture *texture, t_color *color, t_map *map);
+
+//init_game
+void	render_frame(void *param);
 
 // Raycasting
-
 t_game		*init_game_struct(t_game *game, t_map *map,
 				t_texture *texture, t_color *color);
 void		init_game(t_game *game);
@@ -157,5 +160,11 @@ void		assign_textures(t_game *game, t_raycast *values);
 void		calculate_wall_height(t_raycast *values);
 void		calculate_texture_x(t_game *game, t_raycast *values);
 void		render_textures(t_game *game, t_raycast *values, int x);
+
+//movement
+void	movement(mlx_key_data_t keydata, void *param);
+
+//frees
+void		free_structs(t_texture *texture, t_color *color, t_map *map);
 
 #endif

@@ -92,9 +92,16 @@ void	move_camera(t_game *g, mlx_key_data_t keydata)
 
 void	animation(t_game *game, mlx_key_data_t keydata)
 {
+	if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_SPACE)
+	{
+		if (game->pistol1_img->enabled == false)
+			game->pistol1_img->enabled = true;
+		else if (game->pistol1_img->enabled == true)
+			game->pistol1_img->enabled = false;
+	}
 	if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_LEFT_SHIFT)
 	{
-		printf("Animation started\n");
+		//hacer la animacion
 	}
 }
 

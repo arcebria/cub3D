@@ -17,7 +17,7 @@ void	raycasting(t_game *game)
 	t_raycast	values;
 	int			x;
 
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
+	//mlx_image_to_window(game->mlx, game->img, 0, 0);
 	put_color_ceiling_floor(game);
 	x = -1;
 	while (++x < SCREEN_WIDTH)
@@ -33,25 +33,10 @@ void	raycasting(t_game *game)
 	}
 }
 
-void	set_images(t_game *game)
-{
-	game->pistol1 = mlx_load_png("texs/pistol1.png");
-	game->pistol2 = mlx_load_png("texs/pistol2.png");
-	game->pistol3 = mlx_load_png("texs/pistol3.png");
-	game->pistol1_img = mlx_texture_to_image(game->mlx, game->pistol1);
-	game->pistol2_img = mlx_texture_to_image(game->mlx, game->pistol2);
-	game->pistol3_img = mlx_texture_to_image(game->mlx, game->pistol3);
-	mlx_delete_texture(game->pistol1);
-	mlx_delete_texture(game->pistol2);
-	mlx_delete_texture(game->pistol3);
-	mlx_image_to_window(game->mlx, game->pistol1_img, SCREEN_WIDTH / 2 - 64, SCREEN_HEIGHT - 128);
-}
-
 void	render_frame(void *param)
 {
 	t_game	*game;
 
 	game = param;
-	set_images(game);
 	raycasting(game);
 }

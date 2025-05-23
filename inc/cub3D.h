@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:01:32 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/23 19:07:10 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/23 21:45:12 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <stdio.h>
+# include <unistd.h>
 # include <math.h>
 
 # define SCREEN_WIDTH 640
@@ -88,7 +89,16 @@ typedef struct s_game
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	mlx_texture_t	*wall_texture;
+	//mlx_texture_t	*wall_texture;
+	mlx_texture_t	*pistol1;
+	mlx_texture_t	*pistol2;
+	mlx_texture_t	*pistol3;
+	mlx_image_t		*pistol1_img;
+	mlx_image_t		*pistol2_img;
+	mlx_image_t		*pistol3_img;
+	int				animation_state;
+	double			animation_last_time;
+	int				animation_active;
 	mlx_texture_t	*north_texture;
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*east_texture;

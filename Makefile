@@ -1,7 +1,7 @@
 # variables
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast -g -fsanitize=address
 LIBFT_DIR := libft
 LIBMLX := MLX42
 HEADERS := -I ./include -I $(LIBMLX)/include/MLX42/MLX42.h -I $(LIBFT_DIR)

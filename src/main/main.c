@@ -6,11 +6,12 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:55:28 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/23 19:06:56 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:32:49 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
+
 
 void	init_game(t_game *game)
 {

@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:37:45 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/23 19:03:40 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/23 22:08:38 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,15 @@ void	move_camera(t_game *g, mlx_key_data_t keydata)
 	}
 }
 
+
+void	animation(t_game *game, mlx_key_data_t keydata)
+{
+	if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_LEFT_SHIFT)
+	{
+		printf("Animation started\n");
+	}
+}
+
 void	movement(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
@@ -99,6 +108,7 @@ void	movement(mlx_key_data_t keydata, void *param)
 		move_forward_back(game, keydata);
 		move_right_left(game, keydata);
 		move_camera(game, keydata);
+		animation(game, keydata);
 		if (keydata.key == MLX_KEY_ESCAPE)
 		{
 			mlx_close_window(game->mlx);

@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:01:32 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/22 19:49:17 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:07:10 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define SCREEN_HEIGHT 480
 # define FOV 0.6
 # define MOVE_SPEED 0.1
+# define ROT_SPEED 0.05
 
 # define WEST 0
 # define EAST 1
@@ -98,6 +99,8 @@ typedef struct s_game
 	double			pos_y;
 	double			plane_x;
 	double			plane_y;
+	double			old_dir_x;
+	double			old_plane_x;
 	t_color			*color;
 	t_texture		*texture;
 	t_map			*map;
@@ -145,7 +148,7 @@ void		normalize_map(t_map *map);
 void		verify_borders(t_map *map, int x, int y);
 
 //init_game
-void	render_frame(void *param);
+void		render_frame(void *param);
 
 // Raycasting
 t_game		*init_game_struct(t_game *game, t_map *map,
@@ -162,9 +165,10 @@ void		calculate_texture_x(t_game *game, t_raycast *values);
 void		render_textures(t_game *game, t_raycast *values, int x);
 
 //movement
-void	movement(mlx_key_data_t keydata, void *param);
+void		movement(mlx_key_data_t keydata, void *param);
 
 //frees
 void		free_structs(t_texture *texture, t_color *color, t_map *map);
+void		free_game(t_game *game);
 
 #endif

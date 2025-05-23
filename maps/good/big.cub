@@ -1,17 +1,17 @@
-   WE                            texs/wall_west.png
-NO      texs/wall_north.png
+   WE                            texs/west.png
+NO      texs/north.png
 
 
 
-SO texs/wall_south.png
+SO texs/south.png
 
-F      139, 69, 19
+F      21, 14, 157
 
-EA texs/wall_east.png
+EA texs/east.png
 
 
 
-C 108, 187, 255
+C 67, 190, 191
 
 111111111111111111111111
 100000000000000000000001

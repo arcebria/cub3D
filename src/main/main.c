@@ -6,12 +6,11 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:55:28 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/22 19:56:47 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/23 19:06:56 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
-
 
 void	init_game(t_game *game)
 {
@@ -22,6 +21,7 @@ void	init_game(t_game *game)
 	mlx_key_hook(game->mlx, &movement, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
+	free_game(game);
 }
 
 int	main(int argc, char **argv)

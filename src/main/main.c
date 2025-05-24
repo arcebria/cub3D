@@ -6,13 +6,13 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:55:28 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/23 19:32:49 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/24 18:01:07 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3D.h"
 
-//creo que hay que sacar la creacion de la imagen del juego fuera del loop 
+//creo que hay que sacar la creacion de la imagen del juego fuera del loop
 //para que no se vaya sobreescribiendo
 
 void	set_images(t_game *game)
@@ -39,6 +39,16 @@ void	set_images(t_game *game)
 	game->is_animating = false;
 }
 
+void	mouse_move(mlx_key_data_t keydata, void *param)
+{
+	t_game	*game;
+
+	game = param;
+	if (keydata.key == MLX_MOUSE_BUTTON_LEFT && keydata.action == MLX_PRESS)
+		printf("Left mouse button pressed\n");
+
+}
+
 void	init_game(t_game *game)
 {
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
@@ -46,10 +56,13 @@ void	init_game(t_game *game)
 	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	set_images(game);
 	mlx_loop_hook(game->mlx, &render_frame, game);
+	mlx_mouse_hook(game->mlx, &mouse_move, game);
 	mlx_key_hook(game->mlx, &movement, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
 	free_game(game);
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_MODE_HIDDEN);
+	mlx_set_mouse_pos(game->mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 }
 
 int	main(int argc, char **argv)

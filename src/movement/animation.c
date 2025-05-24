@@ -78,3 +78,23 @@ void	animation(t_game *game, mlx_key_data_t keydata)
 		mlx_loop_hook(game->mlx, &animate_pistol, game);
 	}
 }
+void	mouse_click_hook(mouse_key_t button, action_t action, modifier_key_t mods, void *param)
+{
+	t_game	*game;
+
+	(void)mods;
+	game = param;
+	if (action == MLX_PRESS && button == MLX_MOUSE_BUTTON_LEFT
+		&& game->pistol1_img->enabled == true)
+	{
+		if (!game->is_animating)
+		{
+			game->is_animating = true;
+			game->current_sprite = 1;
+			game->pistol1_img->enabled = true;
+			game->pistol2_img->enabled = false;
+			game->pistol3_img->enabled = false;
+		}
+		mlx_loop_hook(game->mlx, &animate_pistol, game);
+	}
+}

@@ -47,6 +47,8 @@ void	init_game(t_game *game)
 	set_images(game);
 	mlx_loop_hook(game->mlx, &render_frame, game);
 	mlx_key_hook(game->mlx, &movement, game);
+	mlx_mouse_hook(game->mlx, &mouse_click_hook, game);
+	mlx_cursor_hook(game->mlx, mouse_hook, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
 	free_game(game);

@@ -24,8 +24,8 @@
 # include <sys/time.h>
 # include <math.h>
 
-# define SCREEN_WIDTH 640
-# define SCREEN_HEIGHT 480
+# define SCREEN_WIDTH 1024
+# define SCREEN_HEIGHT 760
 # define FOV 0.6
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
@@ -176,9 +176,12 @@ void		render_textures(t_game *game, t_raycast *values, int x);
 //movement
 void		movement(mlx_key_data_t keydata, void *param);
 void		animation(t_game *game, mlx_key_data_t keydata);
+void	mouse_hook(double xpos, double ypos, void *param);
+void	mouse_click_hook(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
 
 //frees
 void		free_structs(t_texture *texture, t_color *color, t_map *map);
 void		free_game(t_game *game);
+
 
 #endif

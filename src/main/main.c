@@ -12,7 +12,8 @@
 
 #include "../../inc/cub3D.h"
 
-//creo que hay que sacar la creacion de la imagen del juego fuera del loop para que no se vaya sobreescribiendo
+//creo que hay que sacar la creacion de la imagen del juego fuera del loop 
+//para que no se vaya sobreescribiendo
 
 void	set_images(t_game *game)
 {
@@ -26,9 +27,12 @@ void	set_images(t_game *game)
 	mlx_delete_texture(game->pistol1);
 	mlx_delete_texture(game->pistol2);
 	mlx_delete_texture(game->pistol3);
-	mlx_image_to_window(game->mlx, game->pistol1_img, SCREEN_WIDTH / 2 - 64, SCREEN_HEIGHT - 128);
-	mlx_image_to_window(game->mlx, game->pistol2_img, SCREEN_WIDTH / 2 - 64, SCREEN_HEIGHT - 128);
-	mlx_image_to_window(game->mlx, game->pistol3_img, SCREEN_WIDTH / 2 - 64, SCREEN_HEIGHT - 128);
+	mlx_image_to_window(game->mlx, game->pistol1_img, SCREEN_WIDTH
+		/ 2 - 64, SCREEN_HEIGHT - 128);
+	mlx_image_to_window(game->mlx, game->pistol2_img, SCREEN_WIDTH
+		/ 2 - 64, SCREEN_HEIGHT - 128);
+	mlx_image_to_window(game->mlx, game->pistol3_img, SCREEN_WIDTH
+		/ 2 - 64, SCREEN_HEIGHT - 128);
 	game->pistol1_img->enabled = false;
 	game->pistol2_img->enabled = false;
 	game->pistol3_img->enabled = false;

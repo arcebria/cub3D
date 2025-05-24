@@ -21,7 +21,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <stdio.h>
-# include <unistd.h>
+# include <sys/time.h>
 # include <math.h>
 
 # define SCREEN_WIDTH 640
@@ -175,6 +175,7 @@ void		render_textures(t_game *game, t_raycast *values, int x);
 
 //movement
 void		movement(mlx_key_data_t keydata, void *param);
+void		animation(t_game *game, mlx_key_data_t keydata);
 
 //frees
 void		free_structs(t_texture *texture, t_color *color, t_map *map);

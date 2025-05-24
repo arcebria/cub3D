@@ -96,9 +96,8 @@ typedef struct s_game
 	mlx_image_t		*pistol1_img;
 	mlx_image_t		*pistol2_img;
 	mlx_image_t		*pistol3_img;
-	int				animation_state;
-	double			animation_last_time;
-	int				animation_active;
+	int				current_sprite;
+	bool			is_animating;
 	mlx_texture_t	*north_texture;
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*east_texture;

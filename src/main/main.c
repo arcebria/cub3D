@@ -20,8 +20,8 @@ void	set_images(t_game *game)
 	game->pistol1 = mlx_load_png("texs/pistol1.png");
 	game->pistol2 = mlx_load_png("texs/pistol2.png");
 	game->pistol3 = mlx_load_png("texs/pistol3.png");
-	game->pistol1_img = mlx_texture_to_image(game->mlx, game->pistol1);
 	game->pistol2_img = mlx_texture_to_image(game->mlx, game->pistol2);
+	game->pistol1_img = mlx_texture_to_image(game->mlx, game->pistol1);
 	game->pistol3_img = mlx_texture_to_image(game->mlx, game->pistol3);
 	mlx_delete_texture(game->pistol1);
 	mlx_delete_texture(game->pistol2);
@@ -32,6 +32,7 @@ void	set_images(t_game *game)
 	game->pistol1_img->enabled = false;
 	game->pistol2_img->enabled = false;
 	game->pistol3_img->enabled = false;
+	game->is_animating = false;
 }
 
 void	init_game(t_game *game)

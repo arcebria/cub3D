@@ -17,7 +17,6 @@ void	raycasting(t_game *game)
 	t_raycast	values;
 	int			x;
 
-	//mlx_image_to_window(game->mlx, game->img, 0, 0);
 	put_color_ceiling_floor(game);
 	x = -1;
 	while (++x < SCREEN_WIDTH)

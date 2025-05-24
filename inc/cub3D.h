@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:01:32 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/23 21:45:12 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/24 21:30:22 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define FOV 0.6
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
+# define TILE_SIZE 5
 
 # define WEST 0
 # define EAST 1
@@ -89,7 +90,7 @@ typedef struct s_game
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	//mlx_texture_t	*wall_texture;
+	mlx_image_t		*minimap;
 	mlx_texture_t	*pistol1;
 	mlx_texture_t	*pistol2;
 	mlx_texture_t	*pistol3;
@@ -176,6 +177,10 @@ void		render_textures(t_game *game, t_raycast *values, int x);
 //movement
 void		movement(mlx_key_data_t keydata, void *param);
 void		animation(t_game *game, mlx_key_data_t keydata);
+
+//minimapa
+void		draw_minimap(t_game *game);
+void		draw_player(t_game *game);
 
 //frees
 void		free_structs(t_texture *texture, t_color *color, t_map *map);

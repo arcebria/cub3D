@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:55:28 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/24 18:01:07 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/24 20:19:08 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,7 @@ void	set_images(t_game *game)
 	game->pistol2_img->enabled = false;
 	game->pistol3_img->enabled = false;
 	game->is_animating = false;
-}
-
-void	mouse_move(mlx_key_data_t keydata, void *param)
-{
-	t_game	*game;
-
-	game = param;
-	if (keydata.key == MLX_MOUSE_BUTTON_LEFT && keydata.action == MLX_PRESS)
-		printf("Left mouse button pressed\n");
-
+	mlx_image_to_window(game->mlx, game->minimap, 0, 0);
 }
 
 void	init_game(t_game *game)
@@ -54,15 +45,13 @@ void	init_game(t_game *game)
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D", true);
 	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	game->minimap = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	set_images(game);
 	mlx_loop_hook(game->mlx, &render_frame, game);
-	mlx_mouse_hook(game->mlx, &mouse_move, game);
 	mlx_key_hook(game->mlx, &movement, game);
 	mlx_loop(game->mlx);
 	mlx_terminate(game->mlx);
 	free_game(game);
-	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_MODE_HIDDEN);
-	mlx_set_mouse_pos(game->mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 }
 
 int	main(int argc, char **argv)

@@ -1,12 +1,12 @@
 # variables
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -Wunreachable-code #-g -fsanitize=address
 LIBFT_DIR := libft
 LIBMLX := MLX42
 HEADERS := -I ./include -I $(LIBMLX)/include/MLX42/MLX42.h -I $(LIBFT_DIR)
 LIBS := $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm $(LIBFT_DIR)/libft.a
-SRCDIR = src/parser src/raycast src/main src/movement
+SRCDIR = src/parser src/raycast src/main src/movement src/minimapa
 OBJDIR = obj
 SRCS = $(shell find $(SRCDIR) -name "*.c")
 OBJS = $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRCS))

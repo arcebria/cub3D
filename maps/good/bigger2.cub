@@ -1,7 +1,7 @@
-NO textures/test/north.png
-SO textures/test/south.png
-WE textures/test/west.png
-EA textures/test/east.png
+NO texs/hugui.png
+SO texs/marti.png
+WE texs/toti.png
+EA texs/geri.png
 
 F 164,169,20
 C 153,204,255

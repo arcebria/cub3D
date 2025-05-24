@@ -1,4 +1,4 @@
-#include <math.h>
+/*#include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include "MLX42/include/MLX42/MLX42.h"
@@ -274,5 +274,5 @@ int main(void)
     mlx_loop(game.mlx);
     mlx_terminate(game.mlx);
     return (0);
-}
+}*/
 

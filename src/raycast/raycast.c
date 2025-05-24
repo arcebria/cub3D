@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:53:08 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/23 22:08:02 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/24 21:15:23 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,6 @@ void	render_frame(void *param)
 
 	game = param;
 	raycasting(game);
+	draw_minimap(game);
+	draw_player(game);
 }

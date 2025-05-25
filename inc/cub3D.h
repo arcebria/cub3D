@@ -29,6 +29,7 @@
 # define FOV 0.6
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
+# define BUFFER 0.2
 
 # define WEST 0
 # define EAST 1

@@ -14,9 +14,30 @@
 
 int	is_walkable(t_game *game, double pos_x, double pos_y)
 {
-	if (game->map->map[(int)pos_y][(int)pos_x] != '1')
-		return (1);
-	return (0);
+    double x_start;
+    double x_end;
+    double y_start;
+    double y_end;
+	double x;
+	double y;
+
+	x_start = pos_x - BUFFER;
+	x_end = pos_x + BUFFER;
+	y_start = pos_y - BUFFER;
+	y_end = pos_y + BUFFER;
+    x = x_start;
+    while (x <= x_end)
+    {
+        y = y_start;
+        while (y <= y_end)
+        {
+            if (game->map->map[(int)y][(int)x] == '1')
+                return (0);
+            y += BUFFER;
+        }
+        x += BUFFER;
+    }
+    return (1);
 }
 
 void	move_forward_back(t_game *game, mlx_key_data_t keydata)

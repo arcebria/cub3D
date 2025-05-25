@@ -38,4 +38,6 @@ void	render_frame(void *param)
 
 	game = param;
 	raycasting(game);
+	draw_minimap(game);
+	draw_player(game);
 }

@@ -30,6 +30,8 @@
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
 # define BUFFER 0.2
+# define TILE_SIZE 5
+# define RADIUS 3
 
 # define WEST 0
 # define EAST 1
@@ -90,7 +92,7 @@ typedef struct s_game
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	//mlx_texture_t	*wall_texture;
+	mlx_image_t		*minimap;
 	mlx_texture_t	*pistol1;
 	mlx_texture_t	*pistol2;
 	mlx_texture_t	*pistol3;
@@ -177,12 +179,17 @@ void		render_textures(t_game *game, t_raycast *values, int x);
 //movement
 void		movement(mlx_key_data_t keydata, void *param);
 void		animation(t_game *game, mlx_key_data_t keydata);
-void	mouse_hook(double xpos, double ypos, void *param);
-void	mouse_click_hook(mouse_key_t button, action_t action, modifier_key_t mods, void *param);
+void		mouse_hook(double xpos, double ypos, void *param);
+void		mouse_click_hook(mouse_key_t button, action_t action,
+				modifier_key_t mods, void *param);
+void		set_camera(t_game *game, mlx_key_data_t keydata, double rot_speed);
+
+//minimapa
+void		draw_player(t_game *game);
+void		draw_minimap(t_game *game);
 
 //frees
 void		free_structs(t_texture *texture, t_color *color, t_map *map);
 void		free_game(t_game *game);
-
 
 #endif

@@ -78,7 +78,9 @@ void	animation(t_game *game, mlx_key_data_t keydata)
 		mlx_loop_hook(game->mlx, &animate_pistol, game);
 	}
 }
-void	mouse_click_hook(mouse_key_t button, action_t action, modifier_key_t mods, void *param)
+
+void	mouse_click_hook(mouse_key_t button, action_t action,
+	modifier_key_t mods, void *param)
 {
 	t_game	*game;
 

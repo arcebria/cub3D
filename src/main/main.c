@@ -12,9 +12,6 @@
 
 #include "../../inc/cub3D.h"
 
-//creo que hay que sacar la creacion de la imagen del juego fuera del loop 
-//para que no se vaya sobreescribiendo
-
 void	set_images(t_game *game)
 {
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
@@ -37,6 +34,7 @@ void	set_images(t_game *game)
 	game->pistol2_img->enabled = false;
 	game->pistol3_img->enabled = false;
 	game->is_animating = false;
+	mlx_image_to_window(game->mlx, game->minimap, 0, 0);
 }
 
 void	init_game(t_game *game)
@@ -44,6 +42,7 @@ void	init_game(t_game *game)
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D", true);
 	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	game->minimap = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	set_images(game);
 	mlx_loop_hook(game->mlx, &render_frame, game);
 	mlx_key_hook(game->mlx, &movement, game);

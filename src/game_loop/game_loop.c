@@ -12,32 +12,29 @@
 
 #include "../../inc/cub3D.h"
 
-void	raycasting(t_game *game)
+void	movement(t_game *game)
 {
-	t_raycast	values;
-	int			x;
-
-	put_color_ceiling_floor(game);
-	x = -1;
-	while (++x < SCREEN_WIDTH)
-	{
-		calculate_raydir(game, &values, x);
-		calculate_delta_dist(&values);
-		calculate_side_dist(game, &values);
-		calculate_hits(game, &values);
-		assign_textures(game, &values);
-		calculate_wall_height(&values);
-		calculate_texture_x(game, &values);
-		render_textures(game, &values, x);
-	}
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+		move_forward(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+		move_backward(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+		move_left(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+		move_right(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
+		rotate_camera(game, -ROT_SPEED);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
+		rotate_camera(game, ROT_SPEED);
 }
 
-void	render_frame(void *param)
+void	game_loop(void *param)
 {
 	t_game	*game;
 
 	game = param;
 	raycasting(game);
+	movement(game);
 	draw_minimap(game);
 	draw_player(game);
 }

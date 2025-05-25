@@ -12,29 +12,6 @@
 
 #include "../../inc/cub3D.h"
 
-void	rotate_camera(t_game *game, double rot_speed)
-{
-	game->old_dir_x = game->dir_x;
-	game->dir_x = game->dir_x * cos(rot_speed) - game->dir_y * sin(rot_speed);
-	game->dir_y = game->old_dir_x * sin(rot_speed) + game->dir_y
-		* cos(rot_speed);
-	game->old_plane_x = game->plane_x;
-	game->plane_x = game->plane_x * cos(rot_speed) - game->plane_y
-		* sin(rot_speed);
-	game->plane_y = game->old_plane_x * sin(rot_speed)
-		+ game->plane_y * cos(rot_speed);
-}
-
-void	set_camera(t_game *game, mlx_key_data_t keydata, double rot_speed)
-{
-	if (keydata.key == MLX_KEY_RIGHT)
-		rotate_camera(game, rot_speed);
-	if (keydata.key == MLX_KEY_LEFT)
-		rotate_camera(game, -rot_speed);
-}
-
-//mouse_pos se utiliza para evitar que el cursor salga de la ventana
-
 void	mouse_hook(double xpos, double ypos, void *param)
 {
 	t_game			*game;
@@ -52,4 +29,20 @@ void	mouse_hook(double xpos, double ypos, void *param)
 	last_x = xpos;
 	mlx_set_mouse_pos(game->mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	last_x = SCREEN_WIDTH / 2;
+}
+
+void	hooks(mlx_key_data_t keydata, void *param)
+{
+	t_game	*game;
+
+	game = param;
+	if (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)
+	{
+		animation(game, keydata);
+		if (keydata.key == MLX_KEY_ESCAPE)
+		{
+			mlx_close_window(game->mlx);
+			exit(0);
+		}
+	}
 }

@@ -12,6 +12,28 @@
 
 #include "../../inc/cub3D.h"
 
+void	calculate_hits(t_game *game, t_raycast *values)
+{
+	values->hit = 0;
+	while (values->hit == 0)
+	{
+		if (values->side_dist_x < values->side_dist_y)
+		{
+			values->side_dist_x += values->delta_dist_x;
+			values->map_x += values->step_x;
+			values->side = 0;
+		}
+		else
+		{
+			values->side_dist_y += values->delta_dist_y;
+			values->map_y += values->step_y;
+			values->side = 1;
+		}
+		if (game->map->map[values->map_y][values->map_x] == '1')
+			values->hit = 1;
+	}
+}
+
 void	assign_textures(t_game *game, t_raycast *values)
 {
 	if (values->side == 0)

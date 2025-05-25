@@ -27,7 +27,7 @@
 # define SCREEN_WIDTH 1024
 # define SCREEN_HEIGHT 760
 # define FOV 0.6
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 0.05
 # define ROT_SPEED 0.05
 # define BUFFER 0.2
 # define TILE_SIZE 5
@@ -160,9 +160,10 @@ void		normalize_map(t_map *map);
 void		verify_borders(t_map *map, int x, int y);
 
 //init_game
-void		render_frame(void *param);
+void		game_loop(void *param);
 
 // Raycasting
+void		raycasting(t_game *game);
 t_game		*init_game_struct(t_game *game, t_map *map,
 				t_texture *texture, t_color *color);
 void		init_game(t_game *game);
@@ -177,16 +178,23 @@ void		calculate_texture_x(t_game *game, t_raycast *values);
 void		render_textures(t_game *game, t_raycast *values, int x);
 
 //movement
-void		movement(mlx_key_data_t keydata, void *param);
+void		move_forward(t_game *game);
+void		move_backward(t_game *game);
+void		move_right(t_game *game);
+void		move_left(t_game *game);
+void		hooks(mlx_key_data_t keydata, void *param);
 void		animation(t_game *game, mlx_key_data_t keydata);
 void		mouse_hook(double xpos, double ypos, void *param);
 void		mouse_click_hook(mouse_key_t button, action_t action,
 				modifier_key_t mods, void *param);
-void		set_camera(t_game *game, mlx_key_data_t keydata, double rot_speed);
+void		rotate_camera(t_game *game, double rot_speed);
 
 //minimapa
 void		draw_player(t_game *game);
 void		draw_minimap(t_game *game);
+
+//collisions
+int	is_walkable(t_game *game, double pos_x, double pos_y);
 
 //frees
 void		free_structs(t_texture *texture, t_color *color, t_map *map);

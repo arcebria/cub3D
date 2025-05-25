@@ -12,6 +12,26 @@
 
 #include "../../inc/cub3D.h"
 
+void	raycasting(t_game *game)
+{
+	t_raycast	values;
+	int			x;
+
+	put_color_ceiling_floor(game);
+	x = -1;
+	while (++x < SCREEN_WIDTH)
+	{
+		calculate_raydir(game, &values, x);
+		calculate_delta_dist(&values);
+		calculate_side_dist(game, &values);
+		calculate_hits(game, &values);
+		assign_textures(game, &values);
+		calculate_wall_height(&values);
+		calculate_texture_x(game, &values);
+		render_textures(game, &values, x);
+	}
+}
+
 void	put_color_ceiling_floor(t_game *game)
 {
 	int			x;
@@ -89,24 +109,3 @@ void	calculate_side_dist(t_game *game, t_raycast *values)
 	}
 }
 
-void	calculate_hits(t_game *game, t_raycast *values)
-{
-	values->hit = 0;
-	while (values->hit == 0)
-	{
-		if (values->side_dist_x < values->side_dist_y)
-		{
-			values->side_dist_x += values->delta_dist_x;
-			values->map_x += values->step_x;
-			values->side = 0;
-		}
-		else
-		{
-			values->side_dist_y += values->delta_dist_y;
-			values->map_y += values->step_y;
-			values->side = 1;
-		}
-		if (game->map->map[values->map_y][values->map_x] == '1')
-			values->hit = 1;
-	}
-}

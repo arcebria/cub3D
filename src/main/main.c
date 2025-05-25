@@ -44,8 +44,8 @@ void	init_game(t_game *game)
 	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	game->minimap = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	set_images(game);
-	mlx_loop_hook(game->mlx, &render_frame, game);
-	mlx_key_hook(game->mlx, &movement, game);
+	mlx_loop_hook(game->mlx, &game_loop, game);
+	mlx_key_hook(game->mlx, &hooks, game);
 	mlx_mouse_hook(game->mlx, &mouse_click_hook, game);
 	mlx_cursor_hook(game->mlx, mouse_hook, game);
 	mlx_loop(game->mlx);

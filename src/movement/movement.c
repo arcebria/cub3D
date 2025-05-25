@@ -12,26 +12,29 @@
 
 #include "../../inc/cub3D.h"
 
+int	is_wall(t_game *game, double x, double y)
+{
+	if (game->map->map[(int)y][(int)x] == '1')
+		return (1);
+	return (0);
+}
+
 int	is_walkable(t_game *game, double pos_x, double pos_y)
 {
-	double	x_start;
-	double	x_end;
-	double	y_start;
-	double	y_end;
+	double	x;
+	double	y;
 
-	x_start = pos_x - BUFFER;
-	x_end = pos_x + BUFFER;
-	y_start = pos_y - BUFFER;
-	y_end = pos_y + BUFFER;
-	while (x_start <= x_end)
+	x = pos_x - BUFFER;
+	while (x <= pos_x + BUFFER)
 	{
-		while (y_start <= y_end)
+		y = pos_y - BUFFER;
+		while (y <= pos_y + BUFFER)
 		{
-			if (game->map->map[(int)y_start][(int)x_start] == '1')
+			if (is_wall(game, x, y))
 				return (0);
-			y_start += BUFFER;
+			y += BUFFER;
 		}
-		x_start += BUFFER;
+		x += BUFFER;
 	}
 	return (1);
 }

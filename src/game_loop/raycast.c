@@ -108,4 +108,3 @@ void	calculate_side_dist(t_game *game, t_raycast *values)
 		values->step_y = 1;
 	}
 }
-

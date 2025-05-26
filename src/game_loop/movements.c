@@ -25,7 +25,6 @@ void	rotate_camera(t_game *game, double rot_speed)
 		+ game->plane_y * cos(rot_speed);
 }
 
-
 void	move_forward(t_game *game)
 {
 	if (is_walkable(game, game->pos_x + game->dir_x

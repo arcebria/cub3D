@@ -160,13 +160,13 @@ void		normalize_map(t_map *map);
 void		verify_borders(t_map *map, int x, int y);
 
 //init_game
+void		init_game(t_game *game);
+t_game		*init_game_struct(t_game *game, t_map *map,
+				t_texture *texture, t_color *color);
 void		game_loop(void *param);
 
 // Raycasting
 void		raycasting(t_game *game);
-t_game		*init_game_struct(t_game *game, t_map *map,
-				t_texture *texture, t_color *color);
-void		init_game(t_game *game);
 void		put_color_ceiling_floor(t_game *game);
 void		calculate_raydir(t_game *game, t_raycast *values, int x);
 void		calculate_delta_dist(t_raycast *values);
@@ -182,19 +182,21 @@ void		move_forward(t_game *game);
 void		move_backward(t_game *game);
 void		move_right(t_game *game);
 void		move_left(t_game *game);
+void		rotate_camera(t_game *game, double rot_speed);
+
+//hooks
 void		hooks(mlx_key_data_t keydata, void *param);
 void		animation(t_game *game, mlx_key_data_t keydata);
 void		mouse_hook(double xpos, double ypos, void *param);
 void		mouse_click_hook(mouse_key_t button, action_t action,
 				modifier_key_t mods, void *param);
-void		rotate_camera(t_game *game, double rot_speed);
 
 //minimapa
 void		draw_player(t_game *game);
 void		draw_minimap(t_game *game);
 
 //collisions
-int	is_walkable(t_game *game, double pos_x, double pos_y);
+int			is_walkable(t_game *game, double pos_x, double pos_y);
 
 //frees
 void		free_structs(t_texture *texture, t_color *color, t_map *map);

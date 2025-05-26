@@ -46,6 +46,7 @@ void	init_game(t_game *game)
 	set_images(game);
 	mlx_loop_hook(game->mlx, &game_loop, game);
 	mlx_key_hook(game->mlx, &hooks, game);
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	mlx_mouse_hook(game->mlx, &mouse_click_hook, game);
 	mlx_cursor_hook(game->mlx, mouse_hook, game);
 	mlx_loop(game->mlx);

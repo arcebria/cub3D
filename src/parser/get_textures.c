@@ -14,14 +14,19 @@
 
 t_texture	*add_textures(char *line, t_texture *texture, int j, int z)
 {
+	int	x;
+
+	x = 0;
+	while (!ft_isspace(line[j + x]) && line[j + x])
+		x++;
 	if (!ft_strncmp(line + z, "NO", 2))
-		texture->no_path = ft_strdup(line + j);
+		texture->no_path = ft_strndup(line + j, x);
 	else if (!ft_strncmp(line + z, "SO", 2))
-		texture->so_path = ft_strdup(line + j);
+		texture->so_path = ft_strndup(line + j, x);
 	else if (!ft_strncmp(line + z, "EA", 2))
-		texture->ea_path = ft_strdup(line + j);
+		texture->ea_path = ft_strndup(line + j, x);
 	else if (!ft_strncmp(line + z, "WE", 2))
-		texture->we_path = ft_strdup(line + j);
+		texture->we_path = ft_strndup(line + j, x);
 	return (texture);
 }
 

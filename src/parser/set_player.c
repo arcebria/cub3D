@@ -41,8 +41,8 @@ void	set_player(t_map *map)
 				map->map[x][y] == 'N' || map->map[x][y] == 'S')
 			{
 				map->player_count++;
-				map->player_x = x;
-				map->player_y = y;
+				map->player_x = x + 0.5;
+				map->player_y = y + 0.5;
 				map->map[x][y] = '0';
 			}
 		}

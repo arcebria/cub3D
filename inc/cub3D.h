@@ -79,8 +79,8 @@ typedef struct s_color
 typedef struct s_map
 {
 	char	**map;
-	int		player_x;
-	int		player_y;
+	double		player_x;
+	double		player_y;
 	int		player_dir;
 	int		map_flag;
 	int		player_count;

@@ -1,20 +1,20 @@
-   WE                            textures/wolfenstein/grey_stone.png
-NO      textures/wolfenstein/purple_stone.png
+   WE                            texs/west.png
+NO      texs/north.png
 
 
 
-SO textures/wolfenstein/red_brick.png
+SO texs/south.png
 
 F      139, 69, 19
 
-EA textures/wolfenstein/wood.png
+EA texs/east.png
 
 
 
 C 108, 187, 255
 
 111111111111111111111111
-10000000000000000000001
+100000000000000000000001
 100000000000000000000001
 100000000000000000000001
 100000111110000101010001

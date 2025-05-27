@@ -1,13 +1,13 @@
-   WE                            textures/test/west.png
-NO      textures/test/north.png
+   WE                            texs/west.png
+NO      texs/north.png
 
 
 
-SO textures/test/south.png
+SO texs/south.png
 
 F      139, 69, 19
 
-EA textures/test/east.png
+EA texs/east.png
 
 
 

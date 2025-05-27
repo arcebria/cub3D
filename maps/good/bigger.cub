@@ -1,7 +1,7 @@
-NO texs/hugui.png
-SO texs/marti.png
-WE texs/toti.png
-EA texs/geri.png
+NO texs/north.png
+SO texs/south.png
+WE texs/west.png
+EA texs/east.png
 
 F 30,20,10
 C 20,24,58

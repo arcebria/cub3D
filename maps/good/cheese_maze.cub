@@ -1,7 +1,7 @@
-NO textures/test2/north.png
-SO textures/test2/south.png
-WE textures/test2/west.png
-EA textures/test2/east.png
+NO texs/north.png
+SO texs/south.png
+WE texs/west.png
+EA texs/east.png
 
 F 164,169,20
 C 153,204,255

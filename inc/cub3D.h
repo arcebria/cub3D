@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:01:32 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/23 21:45:12 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:28:01 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 # include <sys/time.h>
 # include <math.h>
 
-# define SCREEN_WIDTH 1024
-# define SCREEN_HEIGHT 760
+# define SCREEN_WIDTH 1028
+# define SCREEN_HEIGHT 900
 # define FOV 0.6
 # define MOVE_SPEED 0.05
-# define ROT_SPEED 0.05
+# define ROT_SPEED 0.1
 # define BUFFER 0.2
 # define TILE_SIZE 5
 # define RADIUS 3
@@ -78,14 +78,14 @@ typedef struct s_color
 
 typedef struct s_map
 {
-	char	**map;
+	char		**map;
 	double		player_x;
 	double		player_y;
-	int		player_dir;
-	int		map_flag;
-	int		player_count;
-	int		map_width;
-	int		map_height;
+	int			player_dir;
+	int			map_flag;
+	int			player_count;
+	int			map_width;
+	int			map_height;
 }	t_map;
 
 typedef struct s_game

@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:50:14 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/13 17:39:05 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:26:16 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 t_texture	*add_textures(char *line, t_texture *texture, int j, int z)
 {
 	int	x;
+	int	y;
 
 	x = 0;
 	while (!ft_isspace(line[j + x]) && line[j + x])
+		x++;
+	y = 0;
+	while (ft_isspace(line[j + x + y]) && line[j + x + y])
+		y++;
+	if (line[j + x + y])
 		x++;
 	if (!ft_strncmp(line + z, "NO", 2))
 		texture->no_path = ft_strndup(line + j, x);

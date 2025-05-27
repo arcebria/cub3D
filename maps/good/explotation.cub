@@ -1,13 +1,13 @@
-   WE                            textures/wolfenstein/red_brick_w.png
-NO      textures/wolfenstein/red_brick_n.png
+   WE                            texs/west.png
+NO      texs/north.png
 
 
 
-SO textures/wolfenstein/red_brick_s.png
+SO texs/south.png
 
 F   139,    90,     43
 
-EA textures/wolfenstein/red_brick_e.png
+EA texs/east.png
 
 
 
@@ -17,11 +17,11 @@ C 102,163,255
 11111111111
 10000000001
 10121012101
-1020202C201
-10121012101
+10202020201
+10121010101
 10000000001
 10000012101
-100F002C201
+10000020201
 10000012101
 1E000000001
 11111111111

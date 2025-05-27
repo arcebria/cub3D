@@ -1,13 +1,13 @@
-   WE                            textures/wolfenstein/red_brick_w.png
-NO      textures/wolfenstein/red_brick_n.png
+   WE                            texs/west.png
+NO      texs/north.png
 
 
 
-SO textures/wolfenstein/red_brick_s.png
+SO texs/south.png
 
 F   139,    90,     43
 
-EA textures/wolfenstein/red_brick_e.png
+EA texs/east.png
 
 
 

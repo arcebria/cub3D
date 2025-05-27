@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:37:45 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/23 22:08:38 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:14:38 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	mouse_hook(double xpos, double ypos, void *param)
 	game = (t_game *)param;
 	delta_x = xpos - last_x;
 	if (delta_x > 2)
-		rotate_camera(game, 0.01);
+		rotate_camera(game, 0.025);
 	else if (delta_x < -2)
-		rotate_camera(game, -0.01);
+		rotate_camera(game, -0.025);
 	last_x = xpos;
 	mlx_set_mouse_pos(game->mlx, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	last_x = SCREEN_WIDTH / 2;

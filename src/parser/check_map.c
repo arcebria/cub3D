@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 20:50:14 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/16 20:20:15 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/27 20:36:19 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,34 +74,6 @@ void	verify_borders(t_map *map, int x, int y)
 		return ;
 	}
 	recall_function(map, x, y);
-}
-
-void	verify_doors(t_map *map)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (map->map[++i])
-	{
-		j = -1;
-		while (map->map[i][++j])
-		{
-			if (map->map[i][j] == '2')
-			{
-				if (map->map[i + 1][j] == '0' || map->map[i - 1][j] == '0')
-				{
-					if (map->map[i][j + 1] == '0' || map->map[i][j - 1] == '0')
-						handle_error(ERR_DOOR_CODE);
-				}
-				else if (map->map[i][j + 1] == '0' || map->map[i][j - 1] == '0')
-				{
-					if (map->map[i + 1][j] == '0' || map->map[i - 1][j] == '0')
-						handle_error(ERR_DOOR_CODE);
-				}
-			}
-		}
-	}
 }
 
 void	check_map(t_map *map)

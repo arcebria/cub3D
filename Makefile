@@ -21,6 +21,7 @@ SRC			=	main/main.c					\
 				parser/get_textures.c		\
 				parser/handle_errors.c		\
 				parser/normalize_map.c		\
+				parser/verify_doors.c		\
 				parser/set_player.c			\
 				game_loop/game_loop.c		\
 				game_loop/raycast.c			\
@@ -105,7 +106,7 @@ bonus: all
 
 clean:
 	@make clean -C $(LIBFT_DIR)
-	@$(RM) $(OBJDIR) $(DEPDIR) 
+	@$(RM) $(OBJDIR) $(DEPDIR)
 	@echo "$(RED)Cleaned object files and dependencies$(DEF_COLOR)"
 
 fclean: clean

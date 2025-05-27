@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:01:32 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/27 17:28:01 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/27 20:37:23 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ void		set_player(t_map *map);
 void		check_map(t_map *map);
 void		normalize_map(t_map *map);
 void		verify_borders(t_map *map, int x, int y);
+void		verify_doors(t_map *map);
 
 //init_game
 void		init_game(t_game *game);

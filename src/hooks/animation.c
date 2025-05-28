@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_utils1.c                                   :+:      :+:    :+:   */
+/*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 18:18:14 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/23 19:06:47 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/28 17:36:16 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	animate_pistol(void *param)
 
 void	animation(t_game *game, mlx_key_data_t keydata)
 {
-	if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_SPACE)
+	if (keydata.action == MLX_PRESS && keydata.key == MLX_KEY_Q)
 	{
 		if (game->pistol1_img->enabled == false)
 			game->pistol1_img->enabled = true;

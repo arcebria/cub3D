@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:01:32 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/27 20:37:23 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:25:31 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define BUFFER 0.2
 # define TILE_SIZE 5
 # define RADIUS 3
+# define LIMIT_DOOR 0.5
 
 # define WEST 0
 # define EAST 1
@@ -105,6 +106,7 @@ typedef struct s_game
 	mlx_texture_t	*south_texture;
 	mlx_texture_t	*east_texture;
 	mlx_texture_t	*west_texture;
+	mlx_texture_t	*door_texture;
 	double			dir_x;
 	double			dir_y;
 	double			pos_x;

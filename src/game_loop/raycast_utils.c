@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast_utils2.c                                   :+:      :+:    :+:   */
+/*   raycast_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 18:18:48 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/22 18:38:19 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:09:43 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,29 @@ void	calculate_hits(t_game *game, t_raycast *values)
 		}
 		if (game->map->map[values->map_y][values->map_x] == '1')
 			values->hit = 1;
+		else if (game->map->map[values->map_y][values->map_x] == 'p')
+			values->hit = 2;
 	}
 }
 
 void	assign_textures(t_game *game, t_raycast *values)
 {
-	if (values->side == 0)
+	if (values->hit == 1 && values->side == 0)
 	{
 		if (values->ray_dir_x > 0)
 			values->wall_texture = game->east_texture;
 		else
 			values->wall_texture = game->west_texture;
 	}
-	if (values->side == 1)
+	if (values->hit == 1 && values->side == 1)
 	{
 		if (values->ray_dir_y > 0)
 			values->wall_texture = game->south_texture;
 		else
 			values->wall_texture = game->north_texture;
 	}
+	if (values->hit == 2)
+		values->wall_texture = game->door_texture;
 }
 
 void	calculate_wall_height(t_raycast *values)

@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 20:09:17 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/22 18:32:18 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:09:29 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	set_textures(t_game *game)
 	game->south_texture = mlx_load_png(game->texture->so_path);
 	game->east_texture = mlx_load_png(game->texture->ea_path);
 	game->west_texture = mlx_load_png(game->texture->we_path);
+	game->door_texture = mlx_load_png("texs/door.png");
 	if (!game->north_texture || !game->south_texture
 		|| !game->east_texture || !game->west_texture)
 		handle_error(ERR_TEXTURE_CODE);

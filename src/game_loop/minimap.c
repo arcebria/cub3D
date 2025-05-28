@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
+/*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/22 19:37:45 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/23 22:08:38 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/28 18:38:06 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	put_color(t_game *game, int x, int y)
 
 	if (game->map->map[y][x] == '1')
 		color = 0xAAAAAAFF;
+	else if (game->map->map[y][x] == 'p')
+		color = 0xFF0000FF;
 	else
 		color = 0x222222FF;
 	i = -1;

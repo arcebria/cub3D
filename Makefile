@@ -67,22 +67,23 @@ DEF_COLOR := \033[0;39m
 
 # -=-=-=-=-    TARGETS -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-all: libft mlx $(NAME)
+all: check_mlx libft mlx $(NAME)
+
+check_mlx:
+	@echo "$(YELLOW)Checking MLX42...$(DEF_COLOR)"
+	@if [ -d "$(LIBMLX)" ] && [ -z "$$(ls -A $(LIBMLX) 2>/dev/null)" ]; then \
+		echo "$(RED)MLX42 directory is empty, removing and cloning...$(DEF_COLOR)"; \
+		$(RM) $(LIBMLX); \
+	fi
+	@if [ ! -d "$(LIBMLX)" ] || [ -z "$$(ls -A $(LIBMLX) 2>/dev/null)" ]; then \
+		echo "$(YELLOW)Cloning MLX42 repository...$(DEF_COLOR)"; \
+		git clone --recurse-submodules https://github.com/codam-coding-college/MLX42.git $(LIBMLX); \
+	fi
 
 libft:
 	@echo "$(YELLOW)Building libft...$(DEF_COLOR)"
 	@make -C $(LIBFT_DIR)
 
-mlx:
-	@if [ ! -d "$(LIBMLX)" ]; then \
-		echo "$(YELLOW)MLX42 library not found, cloning from GitHub...$(DEF_COLOR)"; \
-		git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX); \
-	fi
-	@if [ ! -d "$(LIBMLX)/build/" ]; then \
-		echo "$(YELLOW)Building MLX42...$(DEF_COLOR)"; \
-		cmake -B $(LIBMLX)/build -S $(LIBMLX) > /dev/null; \
-		cmake --build $(LIBMLX)/build --target mlx42 > /dev/null; \
-	fi
 
 # -=-=-=-=-    RULES -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 
@@ -102,6 +103,12 @@ $(NAME): $(OBJS) $(LIBFT_DIR)/libft.a $(MLX42LIB)
 $(LIBFT_DIR)/libft.a: $(LIBFT_HEADERS)
 	@make -C $(LIBFT_DIR)
 
+$(MLX42LIB): check_mlx
+	@echo "$(YELLOW)Building MLX42...$(DEF_COLOR)"
+	@rm -rf $(LIBMLX)/build
+	@cmake -B $(LIBMLX)/build -S $(LIBMLX) > /dev/null
+	@cmake --build $(LIBMLX)/build --target mlx42 > /dev/null
+
 bonus: all
 
 clean:
@@ -111,6 +118,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME) $(LIBFT_DIR)/libft.a
+	@$(RM) $(LIBMLX)
 	@echo "$(RED)Cleaned all binaries$(DEF_COLOR)"
 	@$(RM) $(LIBMLX)/build
 

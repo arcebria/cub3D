@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 15:44:50 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/23 16:06:24 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/06/03 15:31:43 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	free_game(t_game *game)
 		mlx_delete_texture(game->west_texture);
 		mlx_delete_texture(game->north_texture);
 		mlx_delete_texture(game->south_texture);
+		mlx_delete_texture(game->door_texture);
 		free_structs(game->texture, game->color, game->map);
 		free(game);
 	}

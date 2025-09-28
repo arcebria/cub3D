@@ -68,10 +68,9 @@ Esto genera el ejecutable `cub3D` en el directorio raíz.
 cub3D/
 ├── inc/                # Cabeceras (.h)
 ├── libft/              # Librería auxiliar libft
-├── MLX42/              # Librería gráfica MLX42
+├── MLX42/              # Librería gráfica MLX42 (tras hacer make)
 ├── src/                # Código fuente organizado por módulos
 ├── texs/               # Texturas utilizadas en el juego
 ├── maps/               # Mapas de ejemplo en formato .cub
-├── Makefile
-└── documentacion/
+└── Makefile
 ```

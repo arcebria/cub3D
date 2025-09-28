@@ -6,7 +6,7 @@
 /*   By: arcebria <arcebria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 15:22:54 by arcebria          #+#    #+#             */
-/*   Updated: 2025/05/13 17:40:07 by arcebria         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:32:38 by arcebria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_map	*copy_map(char **map_array, t_map *map)
 //A partir de check_params_number se da por supuesto
 // que el mapa esta en el orden correcto
 
-void	parsing(int map_fd)
+t_game	*parsing(int map_fd, t_game *game)
 {
 	char		**map_array;
 	t_texture	*texture;
@@ -102,5 +102,6 @@ void	parsing(int map_fd)
 	color = get_colors(map_array, color);
 	map = copy_map(map_array, map);
 	check_map(map);
-	free_structs(texture, color, map);
+	game = init_game_struct(game, map, texture, color);
+	return (game);
 }

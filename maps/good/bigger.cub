@@ -1,7 +1,7 @@
-NO textures/wolfenstein/red_brick_n.png
-SO textures/wolfenstein/red_brick_s.png
-WE textures/wolfenstein/red_brick_w.png
-EA textures/wolfenstein/red_brick_e.png
+NO texs/north.png
+SO texs/south.png
+WE texs/west.png
+EA texs/east.png
 
 F 30,20,10
 C 20,24,58

@@ -1,7 +1,7 @@
-NO textures/matrix.png
-SO textures/matrix.png
-WE textures/matrix.png
-EA textures/matrix.png
+NO texs/north.png
+SO texs/south.png
+WE texs/west.png
+EA texs/east.png
 
 F 0,0,0
 C 0,0,0
